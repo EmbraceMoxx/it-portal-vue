@@ -1,61 +1,33 @@
-export const printers = [
+export interface PrinterItem {
+  id: number
+  name: string
+  ip: string
+  location: string
+  driver: string
+  scriptPath: string
+  remark: string
+  status: string
+}
+
+export const printers: PrinterItem[] = [
   {
     id: 1,
-    name: '一楼前台打印机',
-    ip: '192.168.1.101',
-    location: '一楼前台',
-    driver: 'HP LaserJet Pro',
-    scriptPath: '\\\\fileserver\\printers\\1F-front\\install.bat',
-    remark: '黑白激光打印机，支持双面打印',
-    status: '正常',
+    name: 'Epson L15168（办公室）',
+    ip: '192.168.3.214',
+    location: '办公室',
+    driver: 'EPSON L15168 Series',
+    scriptPath: String.raw`\\192.168.120.252\itsupport\1.BAT`,
+    remark: '请右键以管理员身份运行',
+    status: '推荐',
   },
   {
     id: 2,
-    name: '二楼办公室打印机',
-    ip: '192.168.1.102',
-    location: '二楼办公室',
-    driver: 'Canon iR-ADV',
-    scriptPath: '\\\\fileserver\\printers\\2F-office\\install.bat',
-    remark: '彩色复合机，支持扫描',
-    status: '正常',
-  },
-]
-
-export const modules = [
-  {
-    key: 'printer',
-    title: '打印机安装中心',
-    icon: '🖨️',
-    tag: '已上线',
-    desc: '集中放置常用打印机安装脚本路径、安装说明和注意事项。',
-    meta: '适合办公打印机、标签打印机、扫码设备驱动入口',
-    to: '/printer',
-  },
-  {
-    key: 'erp',
-    title: 'ERP 入口',
-    icon: '📦',
-    tag: '示例详情',
-    desc: '首页只放入口，进入详情页后再展示系统地址、登录步骤、适用范围和常见问题。',
-    meta: '适合放系统地址、账号说明、权限申请入口',
-    to: '/erp',
-  },
-  {
-    key: 'network',
-    title: '网络 / VPN',
-    icon: '🌐',
-    tag: '已补页面',
-    desc: '提供 Wi‑Fi、VPN、会议室投屏、远程办公等说明。',
-    meta: '适合配合在线 SOP 一起使用',
-    to: '/network',
-  },
-  {
-    key: 'software',
-    title: '常用软件安装',
-    icon: '💽',
-    tag: '已补页面',
-    desc: '统一收口 Office、PDF、浏览器、远程协助、扫码工具等常用软件安装包。',
-    meta: '减少软件安装反复沟通',
-    to: '/software',
+    name: 'Canon C5540（17F文印间打印机A）',
+    ip: '172.29.20.245',
+    location: '17F 文印间',
+    driver: 'Canon Generic Plus UFR II',
+    scriptPath: String.raw`\\fileserver\打印机安装\Canon_C5540\安装Canon_C5540.bat`,
+    remark: '彩色打印，适合办公文印',
+    status: '可用',
   },
 ]

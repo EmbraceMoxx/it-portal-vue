@@ -1,4 +1,14 @@
-export const modules = [
+export interface PortalModule {
+  key: string
+  title: string
+  icon: string
+  tag: string
+  desc: string
+  meta: string
+  to: string
+}
+
+export const modules: PortalModule[] = [
   {
     key: 'printer',
     title: '打印机安装中心',
@@ -22,7 +32,7 @@ export const modules = [
     title: '网络 / VPN',
     icon: '🌐',
     tag: '已补页面',
-    desc: '提供 Wi‑Fi、VPN、会议室投屏、远程办公等说明。',
+    desc: '提供 Wi-Fi、VPN、会议室投屏、远程办公等说明。',
     meta: '适合配合在线 SOP 一起使用',
     to: '/network',
   },
@@ -34,5 +44,23 @@ export const modules = [
     desc: '统一收口 Office、PDF、浏览器、远程协助、扫码工具等常用软件安装包。',
     meta: '减少软件安装反复沟通',
     to: '/software',
+  },
+  {
+    key: 'onboarding',
+    title: '新员工 IT 指引',
+    icon: '👋',
+    tag: '规划中',
+    desc: '整理入职第一天需要开通的账号、常用系统入口、必装软件和注意事项。',
+    meta: '后续可补独立页面',
+    to: '/',
+  },
+  {
+    key: 'ticket',
+    title: 'IT 报障入口',
+    icon: '🛠️',
+    tag: '规划中',
+    desc: '统一提交网络、电脑、打印机、账号权限等问题，并沉淀常见故障处理入口。',
+    meta: '后续可接企业微信/表单/工单系统',
+    to: '/',
   },
 ]

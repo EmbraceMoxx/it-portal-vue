@@ -1,14 +1,36 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('../views/HomeView.vue'),
+  },
+  {
+    path: '/printer',
+    name: 'printer',
+    component: () => import('../views/PrinterView.vue'),
+  },
+  {
+    path: '/erp',
+    name: 'erp',
+    component: () => import('../views/ErpView.vue'),
+  },
+  {
+    path: '/network',
+    name: 'network',
+    component: () => import('../views/NetworkView.vue'),
+  },
+  {
+    path: '/software',
+    name: 'software',
+    component: () => import('../views/SoftwareView.vue'),
+  },
+]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    { path: '/', name: 'home', component: () => import('../views/HomeView.vue') },
-    { path: '/printer', name: 'printer', component: () => import('../views/PrinterView.vue') },
-    { path: '/erp', name: 'erp', component: () => import('../views/ErpView.vue') },
-    { path: '/network', name: 'network', component: () => import('../views/NetworkView.vue') },
-    { path: '/software', name: 'software', component: () => import('../views/SoftwareView.vue') },
-  ],
+  routes,
 })
 
 export default router
