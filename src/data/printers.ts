@@ -1,3 +1,26 @@
+export const printers = [
+  {
+    id: 1,
+    name: '一楼前台打印机',
+    ip: '192.168.1.101',
+    location: '一楼前台',
+    driver: 'HP LaserJet Pro',
+    scriptPath: '\\\\fileserver\\printers\\1F-front\\install.bat',
+    remark: '黑白激光打印机，支持双面打印',
+    status: '正常',
+  },
+  {
+    id: 2,
+    name: '二楼办公室打印机',
+    ip: '192.168.1.102',
+    location: '二楼办公室',
+    driver: 'Canon iR-ADV',
+    scriptPath: '\\\\fileserver\\printers\\2F-office\\install.bat',
+    remark: '彩色复合机，支持扫描',
+    status: '正常',
+  },
+]
+
 export const modules = [
   {
     key: 'printer',
