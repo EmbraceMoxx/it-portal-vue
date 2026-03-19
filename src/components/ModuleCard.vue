@@ -1,9 +1,14 @@
 <template>
-  <RouterLink :to="item.to" class="module-card module-link">
+  <RouterLink
+    :to="item.to"
+    class="module-card module-link"
+    :class="moduleClass"
+  >
     <div class="module-top">
-      <div class="module-icon">{{ item.icon }}</div>
-      <div class="module-tag">{{ item.tag }}</div>
+      <div class="module-icon" :class="iconClass">{{ item.icon }}</div>
+      <div class="module-tag" :class="tagClass">{{ item.tag }}</div>
     </div>
+
     <h3>{{ item.title }}</h3>
     <p>{{ item.desc }}</p>
     <div class="module-meta">{{ item.meta }}</div>
@@ -11,9 +16,61 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { PortalModule } from '../data/modules'
 
-defineProps<{
+const props = defineProps<{
   item: PortalModule
 }>()
+
+const moduleClass = computed(() => {
+  switch (props.item.key) {
+    case 'network':
+      return 'module-network'
+    case 'overseas-network':
+      return 'module-overseas'
+    case 'printer':
+      return 'module-printer'
+    case 'erp':
+      return 'module-erp'
+    case 'software':
+      return 'module-software'
+    default:
+      return ''
+  }
+})
+
+const iconClass = computed(() => {
+  switch (props.item.key) {
+    case 'network':
+      return 'module-icon-network'
+    case 'overseas-network':
+      return 'module-icon-overseas'
+    case 'printer':
+      return 'module-icon-printer'
+    case 'erp':
+      return 'module-icon-erp'
+    case 'software':
+      return 'module-icon-software'
+    default:
+      return ''
+  }
+})
+
+const tagClass = computed(() => {
+  switch (props.item.key) {
+    case 'network':
+      return 'module-tag-network'
+    case 'overseas-network':
+      return 'module-tag-overseas'
+    case 'printer':
+      return 'module-tag-printer'
+    case 'erp':
+      return 'module-tag-erp'
+    case 'software':
+      return 'module-tag-software'
+    default:
+      return ''
+  }
+})
 </script>
