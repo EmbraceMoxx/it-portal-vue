@@ -422,3 +422,32 @@ button {
     font-size: 28px;
   }
 }
+
+.top-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  min-width: 280px;
+  max-width: 640px;
+  padding: 14px 24px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.96);
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+}
+
+.top-toast-fade-enter-active,
+.top-toast-fade-leave-active {
+  transition: all 0.22s ease;
+}
+
+.top-toast-fade-enter-from,
+.top-toast-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-10px);
+}

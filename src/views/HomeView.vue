@@ -65,13 +65,38 @@
         <RouterLink class="btn-link" to="/printer">进入详情 →</RouterLink>
       </div>
 
-      <div class="printer-list">
-        <PrinterCard
-          v-for="printer in printers"
-          :key="printer.id"
-          :printer="printer"
-          @copy="handleCopy"
-        />
+      <div class="detail-grid">
+        <div class="detail-main">
+          <div class="printer-list">
+            <PrinterCard
+              v-for="printer in printers"
+              :key="printer.id"
+              :printer="printer"
+              @copy="handleCopy"
+            />
+          </div>
+        </div>
+
+        <div class="detail-side">
+          <div class="faq-card">
+            <h3>安装说明</h3>
+            <ul>
+              <li>点击“复制脚本路径”按钮。</li>
+              <li>按 Win + E，打开 Windows 资源管理器。</li>
+              <li>把脚本路径粘贴到地址栏，按回车直接执行安装脚本。</li>
+              <li>安装完成后，可在“设备和打印机”中确认。</li>
+            </ul>
+          </div>
+
+          <div class="faq-card">
+            <h3>说明补充</h3>
+            <ul>
+              <li>网页不能直接执行 BAT 脚本，这是浏览器安全限制。</li>
+              <li>复制的是脚本完整路径，不是共享目录路径。</li>
+              <li>若无法直接执行，请将路径重新粘贴到资源管理器地址栏中重试。</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   </div>

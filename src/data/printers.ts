@@ -4,6 +4,7 @@ export interface PrinterItem {
   ip: string
   location: string
   driver: string
+  folderPath: string
   scriptPath: string
   remark: string
   status: string
@@ -16,6 +17,7 @@ export const printers: PrinterItem[] = [
     ip: '192.168.3.214',
     location: '办公室',
     driver: 'EPSON L15168 Series',
+    folderPath: String.raw`\\192.168.120.252\itsupport`,
     scriptPath: String.raw`\\192.168.120.252\itsupport\1.BAT`,
     remark: '请右键以管理员身份运行',
     status: '推荐',
@@ -26,6 +28,7 @@ export const printers: PrinterItem[] = [
     ip: '172.29.20.245',
     location: '17F 文印间',
     driver: 'Canon Generic Plus UFR II',
+    folderPath: String.raw`\\fileserver\打印机安装\Canon_C5540`,
     scriptPath: String.raw`\\fileserver\打印机安装\Canon_C5540\安装Canon_C5540.bat`,
     remark: '彩色打印，适合办公文印',
     status: '可用',

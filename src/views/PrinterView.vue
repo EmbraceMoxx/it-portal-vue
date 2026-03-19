@@ -23,19 +23,19 @@
           <div class="step-list">
             <div class="step-item">
               <strong>1. 复制脚本路径</strong>
-              <div>从下方对应打印机复制脚本路径。</div>
+              <div>点击对应打印机的“复制脚本路径”按钮。</div>
             </div>
             <div class="step-item">
               <strong>2. 打开资源管理器</strong>
               <div>按 Win + E，打开 Windows 资源管理器。</div>
             </div>
             <div class="step-item">
-              <strong>3. 粘贴路径并回车</strong>
-              <div>把脚本路径粘贴到资源管理器地址栏，按回车进入共享目录。</div>
+              <strong>3. 粘贴脚本路径并回车</strong>
+              <div>把脚本路径粘贴到资源管理器地址栏，按回车直接执行安装脚本。</div>
             </div>
             <div class="step-item">
-              <strong>4. 管理员运行</strong>
-              <div>右键脚本，选择“以管理员身份运行”。</div>
+              <strong>4. 等待安装完成</strong>
+              <div>安装完成后，可到“设备和打印机”中确认是否已成功添加。</div>
             </div>
           </div>
         </div>
@@ -66,6 +66,8 @@
           <h3>注意事项</h3>
           <ul>
             <li>网页不能直接执行 BAT 脚本，这是浏览器安全限制。</li>
+            <li>复制的是脚本完整路径，不是共享目录路径。</li>
+            <li>请将脚本路径粘贴到资源管理器地址栏中执行。</li>
             <li>共享目录建议设置普通用户只读权限。</li>
             <li>驱动目录建议单独放置，避免误删。</li>
           </ul>
