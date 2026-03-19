@@ -22,6 +22,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/NetworkView.vue'),
   },
   {
+    path: '/overseas-network',
+    name: 'overseas-network',
+    component: () => import('../views/OverseasNetworkView.vue'),
+  },
+  {
     path: '/software',
     name: 'software',
     component: () => import('../views/SoftwareView.vue'),

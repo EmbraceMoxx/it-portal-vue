@@ -3,70 +3,86 @@
     <div class="breadcrumb">
       <RouterLink to="/">首页</RouterLink>
       <span>/</span>
-      <span>网络 / VPN</span>
+      <span>办公网络</span>
     </div>
 
     <div class="detail-header">
       <div>
         <div class="eyebrow">网络服务</div>
-        <h1>网络 / VPN</h1>
+        <h1>办公网络</h1>
         <p>
-          这里提供 Wi-Fi、VPN、远程办公等相关说明。
-          如需远程访问公司系统，可先查看连接方式和操作步骤。
+          本页用于说明公司办公网络的使用方式，包括有线网络和无线网络。
+          如需访问公司内部系统、共享目录、打印服务等资源，请优先确保当前已正确接入办公网络。
         </p>
-        <div class="detail-actions">
-          <button class="btn-primary" @click="copyText('http://it.example.local/vpn', '已复制 VPN 地址')">
-            复制 VPN 地址
-          </button>
-        </div>
       </div>
     </div>
 
     <div class="detail-grid">
       <div class="detail-main">
         <div class="detail-card">
-          <h3>使用步骤</h3>
+          <h3>一、有线网络</h3>
           <div class="step-list">
             <div class="step-item">
-              <strong>1. 确认当前使用场景</strong>
-              <div>请先确认你是办公室网络、居家办公还是远程访问场景。</div>
+              <strong>1. 接入方式</strong>
+              <div>
+                每个工位均配有网线，可将网线接入笔记本电脑网口或台式主机网口，
+                接入后等待系统自动获取 IP 地址即可使用。
+              </div>
             </div>
             <div class="step-item">
-              <strong>2. 获取连接地址或客户端</strong>
-              <div>根据说明获取 VPN 地址或客户端安装方式。</div>
+              <strong>2. 使用说明</strong>
+              <div>
+                有线网络接入成功后，可直接访问公司内部系统、共享目录、打印服务及其他办公资源。
+              </div>
             </div>
             <div class="step-item">
-              <strong>3. 输入账号并连接</strong>
-              <div>按要求填写公司分配的账号、密码和连接地址。</div>
-            </div>
-            <div class="step-item">
-              <strong>4. 连接异常先自查</strong>
-              <div>如连接失败，请先检查网络是否正常、账号密码是否正确。</div>
+              <strong>3. 状态确认</strong>
+              <div>
+                可查看电脑右下角任务栏网络图标，确认当前是否已成功接入有线网络。
+              </div>
             </div>
           </div>
         </div>
 
         <div class="detail-card">
-          <h3>VPN 地址</h3>
-          <div class="path-box">http://it.example.local/vpn</div>
+          <h3>二、无线网络</h3>
+          <div class="step-list">
+            <div class="step-item">
+              <strong>1. 办公 Wi-Fi 信息</strong>
+              <div>
+                <div>1号楼 &amp; 2号楼一楼：seaways-5G-1F / 密码：SWS88888888</div>
+                <div>1号楼 &amp; 2号楼二楼：seaways-5G / 密码：SWS88888888</div>
+                <div>1号楼 &amp; 2号楼三楼：seaways-5G-3F / 密码：SWS88888888</div>
+                <div>3号楼：seaways-5G / 密码：SWS88888888</div>
+              </div>
+            </div>
+            <div class="step-item">
+              <strong>2. 使用说明</strong>
+              <div>
+                连接对应楼层的办公 Wi-Fi 后，即可正常访问日常办公网络资源。
+                如信号较弱或网络不稳定，建议优先使用有线网络。
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="detail-side">
         <div class="faq-card">
-          <h3>适用对象</h3>
+          <h3>适用场景</h3>
           <ul>
-            <li>适用于办公室网络、远程办公、外出访问公司系统等场景。</li>
-            <li>可用于查看 Wi-Fi、VPN 和远程连接说明。</li>
+            <li>办公室内访问 ERP、共享目录、打印服务等内部资源。</li>
+            <li>办公区域内通过有线网络或无线网络接入公司办公环境。</li>
           </ul>
         </div>
 
         <div class="faq-card">
-          <h3>温馨提示</h3>
+          <h3>使用提示</h3>
           <ul>
-            <li>请使用公司提供的账号和连接方式。</li>
-            <li>涉及网络访问和账号安全的信息请勿随意外传。</li>
-            <li>如多次连接失败，请联系 IT 支持。</li>
+            <li>办公场景下建议优先使用有线网络，稳定性更高。</li>
+            <li>如使用无线网络，请连接当前楼层对应的办公 Wi-Fi。</li>
+            <li>如无法访问内部系统，请先确认是否已接入公司办公网络。</li>
+            <li>如网络异常，请联系 IT 支持处理。</li>
           </ul>
         </div>
       </div>
@@ -75,7 +91,4 @@
 </template>
 
 <script setup lang="ts">
-import { useClipboard } from '../composables/useClipboard'
-
-const { copyText } = useClipboard()
 </script>

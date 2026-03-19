@@ -6,7 +6,7 @@
           <div class="eyebrow">IT 内网服务门户</div>
           <h1>常用 IT 服务入口</h1>
           <p>
-            在这里可以快速找到打印机安装、ERP 入口、网络与 VPN、常用软件等服务。
+            在这里可以快速找到打印机安装、ERP 入口、办公网络、海外网络、常用软件等服务。
             先查看首页概览，再进入对应页面查看详细说明和操作步骤。
           </p>
 
@@ -23,9 +23,9 @@
             <ul>
               <li>安装常用打印机</li>
               <li>查看 ERP 系统入口</li>
-              <li>获取网络 / VPN 使用说明</li>
+              <li>查看办公网络接入方式</li>
+              <li>查看海外网络使用说明</li>
               <li>查找常用软件安装地址</li>
-              <li>查看常见 IT 使用指引</li>
             </ul>
           </div>
 
@@ -40,7 +40,7 @@
             </div>
             <div class="stat-box">
               <div class="stat-label">详情页面</div>
-              <div class="stat-value">4</div>
+              <div class="stat-value">5</div>
             </div>
           </div>
         </div>
@@ -117,10 +117,9 @@ const handleCopy = (path: string) => {
   copyText(path, '已复制脚本路径')
 }
 
-// 首页只展示真正给用户使用的入口
 const displayModules = computed(() =>
   modules.filter((item) =>
-    ['printer', 'erp', 'network', 'software'].includes(item.key),
+    ['printer', 'erp', 'network', 'overseas-network', 'software'].includes(item.key),
   ),
 )
 </script>
