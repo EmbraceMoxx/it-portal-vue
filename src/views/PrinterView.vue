@@ -10,9 +10,7 @@
       <div>
         <div class="eyebrow">服务详情</div>
         <h1>打印机安装中心</h1>
-        <p>
-          首页适合只展示概览，详情页再放完整安装步骤、打印机列表、注意事项和驱动说明，后续也方便按楼层、部门继续拆分。
-        </p>
+        <p>连接共享盘后，双击对应 .bat 脚本即可完成安装。</p>
       </div>
     </div>
 
@@ -20,22 +18,50 @@
       <div class="detail-main">
         <div class="detail-card">
           <h3>操作步骤</h3>
+
+          <!-- 共享盘路径 + 凭据 -->
+          <div class="share-block">
+            <div class="share-path-row">
+              <span class="share-label">共享盘路径</span>
+              <code class="share-path">{{ sharePath }}</code>
+              <button class="btn-primary" @click="handleCopy">复制路径</button>
+            </div>
+            <div class="credential-banner">
+              <span class="credential-icon">🔑</span>
+              <span class="credential-text">连接时如提示输入凭据：</span>
+              <span class="credential-item">账号 <strong>it_ro</strong>
+                <button class="btn-copy-icon" @click="copyText('it_ro', '已复制账号')" title="复制账号">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </span>
+              <span class="credential-item">密码 <strong>Sws888888</strong>
+                <button class="btn-copy-icon" @click="copyText('Sws888888', '已复制密码')" title="复制密码">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </span>
+            </div>
+            <div class="contact-banner">
+              <span class="credential-icon">💬</span>
+              <span>遇到问题？通过企业微信联系运维：<strong>黎灿</strong> 或 <strong>曹杰珲</strong></span>
+            </div>
+          </div>
+
           <div class="step-list">
             <div class="step-item">
-              <strong>1. 复制脚本路径</strong>
-              <div>点击对应打印机的“复制脚本路径”按钮。</div>
+              <strong>1. 复制上方共享盘路径</strong>
+              <div>点击"复制路径"按钮。</div>
             </div>
             <div class="step-item">
-              <strong>2. 打开资源管理器</strong>
-              <div>按 Win + E，打开 Windows 资源管理器。</div>
+              <strong>2. 打开资源管理器并连接共享盘</strong>
+              <div>按 Win + E 打开资源管理器，将路径粘贴到地址栏，按回车打开共享盘文件夹。</div>
             </div>
             <div class="step-item">
-              <strong>3. 粘贴脚本路径并回车</strong>
-              <div>把脚本路径粘贴到资源管理器地址栏，按回车直接执行安装脚本。</div>
+              <strong>3. 双击 BAT 文件安装</strong>
+              <div>在打开的文件夹中，找到下方列表对应的 .bat 脚本，双击运行（如提示权限，请右键选择"以管理员身份运行"）。</div>
             </div>
             <div class="step-item">
               <strong>4. 等待安装完成</strong>
-              <div>安装完成后，可到“设备和打印机”中确认是否已成功添加。</div>
+              <div>安装完成后，可到"设备和打印机"中确认是否已成功添加。</div>
             </div>
           </div>
         </div>
@@ -47,7 +73,6 @@
               v-for="printer in printers"
               :key="printer.id"
               :printer="printer"
-              @copy="handleCopy"
             />
           </div>
         </div>
@@ -65,11 +90,9 @@
         <div class="faq-card">
           <h3>注意事项</h3>
           <ul>
-            <li>网页不能直接执行 BAT 脚本，这是浏览器安全限制。</li>
-            <li>复制的是脚本完整路径，不是共享目录路径。</li>
-            <li>请将脚本路径粘贴到资源管理器地址栏中执行。</li>
+            <li>所有安装脚本统一放在共享盘 bat 文件夹内。</li>
+            <li>如遇权限提示，请右键选择"以管理员身份运行"。</li>
             <li>共享目录建议设置普通用户只读权限。</li>
-            <li>驱动目录建议单独放置，避免误删。</li>
           </ul>
         </div>
       </div>
@@ -79,12 +102,13 @@
 
 <script setup lang="ts">
 import PrinterCard from '../components/PrinterCard.vue'
-import { printers } from '../data/printers'
+import { printers, PRINTER_SHARE_PATH } from '../data/printers'
 import { useClipboard } from '../composables/useClipboard'
 
+const sharePath = PRINTER_SHARE_PATH
 const { copyText } = useClipboard()
 
-const handleCopy = (path: string) => {
-  copyText(path, '已复制脚本路径')
+const handleCopy = () => {
+  copyText(sharePath, '已复制共享盘路径')
 }
 </script>

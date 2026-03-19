@@ -102,14 +102,14 @@ a {
 }
 
 .hero-side {
-  background: #0f172a;
-  color: #ffffff;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: 24px;
   padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 18px;
+  justify-content: flex-start;
+  gap: 0;
 }
 
 .hero-side h2,
@@ -130,7 +130,7 @@ a {
 }
 
 .hero-side ul {
-  color: #cbd5e1;
+  color: #475569;
 }
 
 .stats {
@@ -563,4 +563,255 @@ button {
     padding: 12px 16px;
     font-size: 14px;
   }
+}
+
+.step-image-item {
+  overflow: hidden;
+}
+
+.step-text {
+  margin-top: 6px;
+}
+
+.step-image {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.faq-link-list {
+  display: grid;
+  gap: 14px;
+}
+
+.faq-link-card {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.2s ease;
+}
+
+.faq-link-card:hover {
+  background: #f8fafc;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+.faq-link-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.faq-link-desc {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.faq-link-action {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #1d4ed8;
+}
+
+/* 共享盘路径区块 */
+.share-block {
+  margin-bottom: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.share-path-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.share-label {
+  font-size: 13px;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.share-path {
+  flex: 1;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 13px;
+  color: #0f172a;
+  word-break: break-all;
+  background: none;
+}
+
+/* 凭据醒目横幅 */
+.credential-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #fefce8;
+  border: 1px solid #fde047;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #713f12;
+  line-height: 1.6;
+}
+
+.credential-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.credential-banner strong {
+  color: #92400e;
+}
+
+/* 凭据横幅内联复制 */
+.credential-banner {
+  flex-wrap: wrap;
+}
+
+.credential-text {
+  white-space: nowrap;
+}
+
+.credential-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.btn-copy-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #92400e;
+  cursor: pointer;
+  transition: 0.15s ease;
+  vertical-align: middle;
+}
+
+.btn-copy-icon:hover {
+  background: #fcd34d;
+  border-color: #fbbf24;
+}
+
+/* 联系人横幅 */
+.contact-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #1e3a5f;
+  line-height: 1.6;
+}
+
+.contact-banner strong {
+  color: #1d4ed8;
+}
+
+/* IT 服务支持 */
+.support-header {
+  margin-bottom: 16px;
+}
+
+.support-badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f0fdf4;
+  color: #16a34a;
+  margin-bottom: 8px;
+}
+
+.support-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #0f172a;
+}
+
+.support-list {
+  display: grid;
+  gap: 16px;
+}
+
+.support-group {
+  display: grid;
+  gap: 8px;
+}
+
+.support-group-label {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.support-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.support-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+}
+
+.support-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.support-avatar.it {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.support-avatar.erp {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+.support-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
 }
