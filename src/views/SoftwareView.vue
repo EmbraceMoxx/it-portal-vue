@@ -8,10 +8,11 @@
 
     <div class="detail-header">
       <div>
-        <div class="eyebrow">服务详情</div>
+        <div class="eyebrow">软件服务</div>
         <h1>常用软件安装</h1>
         <p>
-          把办公软件、浏览器、PDF 工具、远程协助、扫码工具等统一收口。首页只放入口，详情页维护安装分类、版本说明、下载地址和注意事项更适合长期使用。
+          这里提供常用软件的安装入口和使用说明，
+          包括办公软件、浏览器、PDF 工具、远程协助工具等。
         </p>
         <div class="detail-actions">
           <button class="btn-primary" @click="copyText('http://it.example.local/software', '已复制软件中心地址')">
@@ -24,48 +25,48 @@
     <div class="detail-grid">
       <div class="detail-main">
         <div class="detail-card">
-          <h3>操作步骤</h3>
+          <h3>使用步骤</h3>
           <div class="step-list">
             <div class="step-item">
-              <strong>1. 选择软件分类</strong>
-              <div>按办公、开发、远程协助、扫码工具等分类展示。</div>
+              <strong>1. 选择需要的软件</strong>
+              <div>根据办公、浏览器、工具软件等分类找到对应安装项。</div>
             </div>
             <div class="step-item">
               <strong>2. 下载对应版本</strong>
-              <div>明确 Windows / Mac、32 位 / 64 位等差异，避免装错版本。</div>
+              <div>请确认系统类型和软件版本，避免安装不匹配的版本。</div>
             </div>
             <div class="step-item">
-              <strong>3. 查看安装说明</strong>
-              <div>对有特殊权限要求的软件，补充管理员运行、重启或依赖说明。</div>
+              <strong>3. 按说明完成安装</strong>
+              <div>如页面有安装提示，请按步骤完成安装。</div>
             </div>
             <div class="step-item">
-              <strong>4. 安装失败再报障</strong>
-              <div>先查看版本、兼容性、权限说明，再决定是否进入 IT 报障流程。</div>
+              <strong>4. 安装失败再寻求帮助</strong>
+              <div>如仍无法安装，请联系 IT 支持协助处理。</div>
             </div>
           </div>
         </div>
 
         <div class="detail-card">
-          <h3>入口信息</h3>
-          <div class="path-box">软件中心地址：http://it.example.local/software</div>
+          <h3>软件中心地址</h3>
+          <div class="path-box">http://it.example.local/software</div>
         </div>
       </div>
 
       <div class="detail-side">
         <div class="faq-card">
-          <h3>适用范围</h3>
+          <h3>适用对象</h3>
           <ul>
-            <li>适用于办公软件、浏览器、PDF 工具、远程协助、驱动工具等安装场景。</li>
-            <li>适合按软件类别、平台和版本继续拆分子页面。</li>
+            <li>适用于需要安装常用办公和工具软件的员工。</li>
+            <li>可用于查看软件下载地址和安装说明。</li>
           </ul>
         </div>
 
         <div class="faq-card">
-          <h3>注意事项</h3>
+          <h3>温馨提示</h3>
           <ul>
-            <li>软件版本、安装说明和下载地址建议统一维护。</li>
-            <li>对需要管理员权限的软件，要明确标注安装要求。</li>
-            <li>后续可以继续拆出浏览器、Office、开发工具等更细页面。</li>
+            <li>请优先使用公司提供的软件安装入口。</li>
+            <li>部分软件可能需要管理员权限，请按页面提示操作。</li>
+            <li>如下载或安装异常，请联系 IT 支持。</li>
           </ul>
         </div>
       </div>
