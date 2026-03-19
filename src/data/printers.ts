@@ -1,0 +1,38 @@
+export const modules = [
+  {
+    key: 'printer',
+    title: '打印机安装中心',
+    icon: '🖨️',
+    tag: '已上线',
+    desc: '集中放置常用打印机安装脚本路径、安装说明和注意事项。',
+    meta: '适合办公打印机、标签打印机、扫码设备驱动入口',
+    to: '/printer',
+  },
+  {
+    key: 'erp',
+    title: 'ERP 入口',
+    icon: '📦',
+    tag: '示例详情',
+    desc: '首页只放入口，进入详情页后再展示系统地址、登录步骤、适用范围和常见问题。',
+    meta: '适合放系统地址、账号说明、权限申请入口',
+    to: '/erp',
+  },
+  {
+    key: 'network',
+    title: '网络 / VPN',
+    icon: '🌐',
+    tag: '已补页面',
+    desc: '提供 Wi‑Fi、VPN、会议室投屏、远程办公等说明。',
+    meta: '适合配合在线 SOP 一起使用',
+    to: '/network',
+  },
+  {
+    key: 'software',
+    title: '常用软件安装',
+    icon: '💽',
+    tag: '已补页面',
+    desc: '统一收口 Office、PDF、浏览器、远程协助、扫码工具等常用软件安装包。',
+    meta: '减少软件安装反复沟通',
+    to: '/software',
+  },
+]
