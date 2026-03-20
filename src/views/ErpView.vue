@@ -8,7 +8,6 @@
 
     <div class="detail-header">
       <div>
-        <div class="eyebrow">系统服务</div>
         <h1>ERP 入口</h1>
         <p>
           这里提供 ERP 系统入口、登录说明和常见使用提示。

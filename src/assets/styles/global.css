@@ -122,7 +122,7 @@ a {
 /* Hero 右侧快捷导航 */
 .hw-nav {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   flex-shrink: 0;
 }
@@ -155,6 +155,17 @@ a {
   font-size: 14px;
   font-weight: 600;
   color: #e2e8f0;
+}
+
+.hw-nav-disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.hw-nav-disabled:hover {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  transform: none !important;
 }
 
 .hw-right {
@@ -682,7 +693,7 @@ button {
 
   .hw-nav {
     width: 100%;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .hw-right {
@@ -1500,4 +1511,124 @@ button {
   border-top: 1px solid #f1f5f9;
   font-size: 12px;
   color: #94a3b8;
+}
+
+/* 侧边栏 faq-card 紧凑 */
+.detail-side .faq-card {
+  padding: 20px 22px;
+}
+
+.detail-side .faq-card h3 {
+  margin: 0 0 12px;
+  font-size: 17px;
+}
+
+.detail-side .faq-card ul {
+  line-height: 1.85;
+  font-size: 14px;
+}
+
+.detail-side {
+  align-self: start;
+}
+
+/* Wi-Fi 账号密码块 */
+.wifi-cred-block {
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 16px;
+}
+
+.wifi-cred-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 14px;
+}
+
+.wifi-pw-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #dbeafe;
+  margin-bottom: 10px;
+}
+
+.wifi-pw-label {
+  font-size: 12px;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.wifi-pw-val {
+  font-size: 16px;
+  color: #0f172a;
+  letter-spacing: 0.04em;
+  flex: 1;
+}
+
+.wifi-cred-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.wifi-cred-item {
+  padding: 10px 14px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #dbeafe;
+}
+
+.wifi-cred-scope {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.wifi-cred-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* 联系 IT 提示块 */
+.it-contact-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  background: #fefce8;
+  border: 1px solid #fde047;
+  border-radius: 14px;
+}
+
+.it-contact-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.it-contact-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #713f12;
+  margin-bottom: 4px;
+}
+
+.it-contact-desc {
+  font-size: 13px;
+  color: #92400e;
+}
+
+.it-contact-desc strong {
+  color: #78350f;
 }

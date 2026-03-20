@@ -18,14 +18,18 @@
             <span class="hw-nav-icon">🌐</span>
             <span class="hw-nav-label">办公网络</span>
           </RouterLink>
-          <RouterLink class="hw-nav-item" to="/erp">
+          <RouterLink class="hw-nav-item" to="/overseas-network">
+            <span class="hw-nav-icon">🚀</span>
+            <span class="hw-nav-label">海外网络</span>
+          </RouterLink>
+          <div class="hw-nav-item hw-nav-disabled">
             <span class="hw-nav-icon">📦</span>
             <span class="hw-nav-label">金蝶 ERP</span>
-          </RouterLink>
-          <RouterLink class="hw-nav-item" to="/software">
+          </div>
+          <div class="hw-nav-item hw-nav-disabled">
             <span class="hw-nav-icon">💿</span>
             <span class="hw-nav-label">常用软件</span>
-          </RouterLink>
+          </div>
         </div>
       </div>
     </div>
@@ -41,7 +45,7 @@
       <section class="section-card">
         <div class="section-head">
           <div>
-            <h2>打印机安装中心</h2>
+            <h2>打印机安装</h2>
             <div class="section-subtitle">连接共享盘后，双击对应 .bat 脚本即可完成安装。</div>
           </div>
           <RouterLink class="btn-link" to="/printer">查看全部 →</RouterLink>

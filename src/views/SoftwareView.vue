@@ -8,7 +8,6 @@
 
     <div class="detail-header">
       <div>
-        <div class="eyebrow">软件服务</div>
         <h1>常用软件安装</h1>
         <p>
           这里提供常用软件的安装入口和使用说明，

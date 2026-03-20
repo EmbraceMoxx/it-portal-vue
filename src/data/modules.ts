@@ -12,7 +12,7 @@ export interface PortalModule {
 export const modules: PortalModule[] = [
   {
     key: 'printer',
-    title: '打印机安装中心',
+    title: '打印机安装',
     icon: '🖨️',
     tag: '常用',
     desc: '查看常用打印机安装入口和操作说明。',

@@ -8,7 +8,6 @@
 
     <div class="detail-header">
       <div>
-        <div class="eyebrow">网络服务</div>
         <h1>办公网络</h1>
         <p>
           本页用于说明公司办公网络的接入方式，包括有线网络和无线网络。
@@ -20,23 +19,45 @@
     <div class="detail-grid">
       <div class="detail-main">
         <div class="detail-card">
-          <h3>有线网络</h3>
-          <div class="step-list">
-            <div v-for="(step, index) in wiredSteps" :key="`wired-${index}`" class="step-item step-image-item">
-              <strong>{{ index + 1 }}. {{ step.title }}</strong>
-              <div class="step-text">{{ step.text }}</div>
-              <img
-                v-if="step.image"
-                :src="step.image"
-                :alt="step.title"
-                class="step-image"
-              />
+          <h3>无线网络</h3>
+
+          <!-- Wi-Fi 账号密码 -->
+          <div class="wifi-cred-block">
+            <div class="wifi-cred-title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+              Wi-Fi 账号与密码
+            </div>
+
+            <!-- 统一密码 -->
+            <div class="wifi-pw-row">
+              <span class="wifi-pw-label">统一密码</span>
+              <strong class="wifi-pw-val">SWS88888888</strong>
+              <button class="btn-copy-icon" @click="copyText('SWS88888888', '已复制密码')" title="复制密码">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+
+            <!-- Wi-Fi 名称列表 -->
+            <div class="wifi-cred-list">
+              <div class="wifi-cred-item">
+                <div class="wifi-cred-scope">1/2 号楼 一楼</div>
+                <div class="wifi-cred-name">seaways-5G-1F</div>
+              </div>
+              <div class="wifi-cred-item">
+                <div class="wifi-cred-scope">1/2 号楼 二楼</div>
+                <div class="wifi-cred-name">seaways-5G</div>
+              </div>
+              <div class="wifi-cred-item">
+                <div class="wifi-cred-scope">1/2 号楼 三楼</div>
+                <div class="wifi-cred-name">seaways-5G-3F</div>
+              </div>
+              <div class="wifi-cred-item">
+                <div class="wifi-cred-scope">3 号楼</div>
+                <div class="wifi-cred-name">seaways-5G</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="detail-card">
-          <h3>无线网络</h3>
           <div class="step-list">
             <div v-for="(step, index) in wifiSteps" :key="`wifi-${index}`" class="step-item step-image-item">
               <strong>{{ index + 1 }}. {{ step.title }}</strong>
@@ -52,6 +73,34 @@
         </div>
 
         <div class="detail-card">
+          <h3>有线网络</h3>
+          <div class="step-list">
+            <div v-for="(step, index) in wiredSteps" :key="`wired-${index}`" class="step-item step-image-item">
+              <strong>{{ index + 1 }}. {{ step.title }}</strong>
+              <div class="step-text">{{ step.text }}</div>
+              <img
+                v-if="step.image"
+                :src="step.image"
+                :alt="step.title"
+                class="step-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-side">
+        <div class="faq-card">
+          <h3>温馨提示</h3>
+          <ul>
+            <li>办公场景下建议优先使用有线网络，稳定性更高。</li>
+            <li>如使用无线网络，请连接当前楼层对应的办公 Wi-Fi。</li>
+            <li>如无法访问内部系统，请先确认是否已接入公司办公网络。</li>
+            <li>如网络异常，请联系 IT 支持处理。</li>
+          </ul>
+        </div>
+
+        <div class="faq-card">
           <h3>常见问题</h3>
           <div class="faq-link-list">
             <a
@@ -69,31 +118,14 @@
           </div>
         </div>
       </div>
-
-      <div class="detail-side">
-        <div class="faq-card">
-          <h3>适用场景</h3>
-          <ul>
-            <li>办公室内访问 ERP、共享目录、打印服务等内部资源。</li>
-            <li>办公区域内通过有线网络或无线网络接入公司办公环境。</li>
-          </ul>
-        </div>
-
-        <div class="faq-card">
-          <h3>温馨提示</h3>
-          <ul>
-            <li>办公场景下建议优先使用有线网络，稳定性更高。</li>
-            <li>如使用无线网络，请连接当前楼层对应的办公 Wi-Fi。</li>
-            <li>如无法访问内部系统，请先确认是否已接入公司办公网络。</li>
-            <li>如网络异常，请联系 IT 支持处理。</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useClipboard } from '../composables/useClipboard'
+
+const { copyText } = useClipboard()
 interface StepItem {
   title: string
   text: string
@@ -109,40 +141,30 @@ interface FaqLinkItem {
 const wiredSteps: StepItem[] = [
   {
     title: '连接网线',
-    text: '每个工位均配有网线，可将网线接入笔记本电脑网口或台式主机网口。',
+    text: '每个工位均配有网线，可将网线接入笔记本电脑网口或台式主机网口，等待自动获取IP地址即可使用',
     image: '/images/network/wired-step-1.png',
-  },
-  {
-    title: '等待自动获取 IP',
-    text: '接入后等待系统自动获取 IP 地址，成功后即可使用办公网络。',
-    image: '/images/network/wired-step-2.png',
   },
   {
     title: '确认连接状态',
     text: '可查看电脑右下角任务栏网络图标，确认当前是否已成功接入有线网络。',
-    image: '/images/network/wired-step-3.png',
+    image: '/images/network/wired-step-2.png',
   },
 ]
 
 const wifiSteps: StepItem[] = [
   {
-    title: '选择对应 Wi-Fi',
-    text: `
-      <div>1号楼 &amp; 2号楼一楼：seaways-5G-1F / 密码：SWS88888888</div>
-      <div>1号楼 &amp; 2号楼二楼：seaways-5G / 密码：SWS88888888</div>
-      <div>1号楼 &amp; 2号楼三楼：seaways-5G-3F / 密码：SWS88888888</div>
-      <div>3号楼：seaways-5G / 密码：SWS88888888</div>
-    `,
+    title: '根据所在楼层选择对应 Wi-Fi',
+    text: '参考上方账号密码表，找到对应楼层的 Wi-Fi 名称，在设备 Wi-Fi 列表中选择连接。',
     image: '/images/network/wifi-step-1.png',
   },
   {
-    title: '输入密码并连接',
-    text: '连接对应楼层的办公 Wi-Fi，输入密码后即可接入办公网络。',
+    title: '输入密码连接',
+    text: '在 Wi-Fi 列表中找到对应名称，点击连接并输入密码，等待连接成功即可。',
     image: '/images/network/wifi-step-2.png',
   },
   {
-    title: '确认网络可用',
-    text: '连接成功后，可访问日常办公系统和内部资源。如信号不稳定，建议优先使用有线网络。',
+    title: '确认连接正常',
+    text: '连接成功后任务栏会显示 Wi-Fi 图标。可尝试打开内部系统确认网络可用。若信号不稳定，建议改用有线网络。',
     image: '/images/network/wifi-step-3.png',
   },
 ]

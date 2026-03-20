@@ -3,13 +3,12 @@
     <div class="breadcrumb">
       <RouterLink to="/">首页</RouterLink>
       <span>/</span>
-      <span>打印机安装中心</span>
+      <span>打印机安装</span>
     </div>
 
     <div class="detail-header">
       <div>
-        <div class="eyebrow">服务详情</div>
-        <h1>打印机安装中心</h1>
+        <h1>打印机安装</h1>
         <p>连接共享盘后，双击对应 .bat 脚本即可完成安装。</p>
       </div>
     </div>
@@ -77,20 +76,25 @@
 
       <div class="detail-side">
         <div class="faq-card">
-          <h3>适用范围</h3>
-          <ul>
-            <li>适用于办公打印机、标签打印机等共享安装场景。</li>
-            <li>适合按楼层、区域、部门继续拆分子页面。</li>
-          </ul>
-        </div>
-
-        <div class="faq-card">
-          <h3>注意事项</h3>
-          <ul>
-            <li>所有安装脚本统一放在共享盘 bat 文件夹内。</li>
-            <li>如遇权限提示，请右键选择"以管理员身份运行"。</li>
-            <li>共享目录建议设置普通用户只读权限。</li>
-          </ul>
+          <h3>常见问题</h3>
+          <div class="faq-link-list">
+            <div class="faq-link-card">
+              <div class="faq-link-title">双击 bat 没有反应怎么办？</div>
+              <div class="faq-link-desc">尝试右键选择"以管理员身份运行"，部分电脑需要管理员权限才能执行安装脚本。</div>
+            </div>
+            <div class="faq-link-card">
+              <div class="faq-link-title">共享盘打不开怎么办？</div>
+              <div class="faq-link-desc">确认已连接公司内网，路径输入正确，凭据账号密码无误。</div>
+            </div>
+            <div class="faq-link-card">
+              <div class="faq-link-title">安装后找不到打印机怎么办？</div>
+              <div class="faq-link-desc">打开"控制面板 → 设备和打印机"查看是否已添加，或尝试重新运行安装脚本。</div>
+            </div>
+            <div class="faq-link-card">
+              <div class="faq-link-title">打印机显示离线怎么办？</div>
+              <div class="faq-link-desc">确认打印机已开机，且当前电脑与打印机在同一网络下。</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
