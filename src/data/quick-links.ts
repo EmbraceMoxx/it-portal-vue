@@ -25,21 +25,15 @@ export const quickLinks: QuickLink[] = [
     icon: '🖥️',
   },
   {
-    label: 'PDF 转换',
-    url: 'https://smallpdf.com/cn',
-    desc: 'PDF 在线处理工具',
-    icon: '📄',
+    label: 'ToDesk 远程',
+    url: 'https://www.todesk.com',
+    desc: '远程控制工具',
+    icon: '🔗',
   },
   {
-    label: '微软官网',
-    url: 'https://www.microsoft.com/zh-cn',
-    desc: 'Office、系统激活等',
-    icon: '🪟',
-  },
-  {
-    label: '金蝶官网',
-    url: 'https://www.kingdee.com',
-    desc: '金蝶 ERP 官方支持',
+    label: '金蝶云社区',
+    url: 'https://vip.kingdee.com',
+    desc: '金蝶产品支持与社区',
     icon: '📦',
   },
 ]

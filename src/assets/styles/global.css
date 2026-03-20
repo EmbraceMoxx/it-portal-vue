@@ -387,9 +387,19 @@ a {
   background: #eff6ff;
 }
 
-.module-tag-printer {
-  background: #eff6ff;
-  color: #1d4ed8;
+.module-tag-soon {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.module-coming-soon {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.module-coming-soon:hover {
+  transform: none;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
 /* ERP */

@@ -6,6 +6,7 @@ export interface PortalModule {
   desc: string
   meta: string
   to: string
+  comingSoon?: boolean
 }
 
 export const modules: PortalModule[] = [
@@ -17,15 +18,6 @@ export const modules: PortalModule[] = [
     desc: '查看常用打印机安装入口和操作说明。',
     meta: '办公打印机、标签打印机、驱动安装',
     to: '/printer',
-  },
-  {
-    key: 'erp',
-    title: 'ERP 入口',
-    icon: '📦',
-    tag: '系统',
-    desc: '查看 ERP 系统入口、登录说明和使用提示。',
-    meta: '系统地址、登录步骤、常见说明',
-    to: '/erp',
   },
   {
     key: 'network',
@@ -46,6 +38,16 @@ export const modules: PortalModule[] = [
     to: '/overseas-network',
   },
   {
+    key: 'erp',
+    title: 'ERP 入口',
+    icon: '📦',
+    tag: '系统',
+    desc: '查看 ERP 系统入口、登录说明和使用提示。',
+    meta: '系统地址、登录步骤、常见说明',
+    to: '/erp',
+    comingSoon: true,
+  },
+  {
     key: 'software',
     title: '常用软件安装',
     icon: '💽',
@@ -53,5 +55,6 @@ export const modules: PortalModule[] = [
     desc: '查找常用软件安装地址和使用说明。',
     meta: '办公软件、浏览器、工具软件',
     to: '/software',
+    comingSoon: true,
   },
 ]
