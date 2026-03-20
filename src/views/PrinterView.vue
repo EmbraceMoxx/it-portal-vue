@@ -75,6 +75,15 @@
       </div>
 
       <div class="detail-side">
+        <RouterLink to="/scan" class="scan-entry-card">
+          <div class="scan-entry-icon">🔍</div>
+          <div class="scan-entry-body">
+            <div class="scan-entry-title">一体机扫描教程</div>
+            <div class="scan-entry-desc">如何用 EPSON L15160 扫描文件，保存为 PDF 或图片</div>
+          </div>
+          <span class="scan-entry-arrow">→</span>
+        </RouterLink>
+
         <div class="faq-card">
           <h3>常见问题</h3>
           <div class="faq-link-list">

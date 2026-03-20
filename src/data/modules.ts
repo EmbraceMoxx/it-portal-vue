@@ -38,6 +38,15 @@ export const modules: PortalModule[] = [
     to: '/overseas-network',
   },
   {
+    key: 'meeting',
+    title: '会议室设备',
+    icon: '📽️',
+    tag: '会议',
+    desc: '投影仪、扩展坞、激光笔使用说明，以及企业微信、钉钉在线会议操作指引。',
+    meta: '投影仪、扩展坞、激光笔、在线会议',
+    to: '/meeting',
+  },
+  {
     key: 'erp',
     title: 'ERP 入口',
     icon: '📦',

@@ -33,6 +33,7 @@ const moduleClass = computed(() => {
     case 'printer': return 'module-printer'
     case 'erp': return 'module-erp'
     case 'software': return 'module-software'
+    case 'meeting': return 'module-meeting'
     default: return ''
   }
 })
@@ -44,6 +45,7 @@ const iconClass = computed(() => {
     case 'printer': return 'module-icon-printer'
     case 'erp': return 'module-icon-erp'
     case 'software': return 'module-icon-software'
+    case 'meeting': return 'module-icon-meeting'
     default: return ''
   }
 })
@@ -55,6 +57,7 @@ const tagClass = computed(() => {
     case 'printer': return 'module-tag-printer'
     case 'erp': return 'module-tag-erp'
     case 'software': return 'module-tag-software'
+    case 'meeting': return 'module-tag-meeting'
     default: return ''
   }
 })

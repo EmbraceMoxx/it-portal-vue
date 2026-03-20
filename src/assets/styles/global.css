@@ -4030,3 +4030,327 @@ button {
   background: #334155;
   color: #e2e8f0;
 }
+
+/* ===== 会议室模块卡片 ===== */
+.module-meeting {
+  background: linear-gradient(180deg, #ffffff 0%, #fdf4ff 100%);
+  border-color: #e9d5ff;
+}
+
+.module-icon-meeting { background: #f3e8ff; }
+.module-tag-meeting  { background: #f3e8ff; color: #7e22ce; }
+
+/* ===== 扫描入口卡片（打印机侧边栏）===== */
+.scan-entry-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 16px;
+  transition: 0.18s ease;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+
+.scan-entry-card:hover {
+  background: #f5f3ff;
+  border-color: #ddd6fe;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(15,23,42,0.08);
+}
+
+.scan-entry-icon { font-size: 28px; flex-shrink: 0; }
+
+.scan-entry-body { flex: 1; }
+
+.scan-entry-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 3px;
+}
+
+.scan-entry-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.scan-entry-arrow {
+  font-size: 16px;
+  color: #7c3aed;
+  flex-shrink: 0;
+}
+
+/* ===== 会议室页面 ===== */
+.meeting-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.meeting-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  font-size: 14px;
+  color: #475569;
+  cursor: pointer;
+  transition: 0.15s ease;
+  font-family: inherit;
+}
+
+.meeting-tab:hover { background: #f8fafc; }
+
+.meeting-tab.active {
+  background: #0f172a;
+  color: #fff;
+  border-color: #0f172a;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 18px;
+  line-height: 1.6;
+}
+
+.step-note {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #92400e;
+  background: #fefce8;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  padding: 2px 6px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #334155;
+}
+
+/* 扩展坞接口网格 */
+.interface-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.interface-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.interface-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+.interface-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.interface-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* 激光笔按键说明 */
+.key-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.key-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+}
+
+/* 会议功能网格 */
+.meeting-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.meeting-func-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.meeting-func-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 14px 10px;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+.mfi-icon { font-size: 22px; }
+
+.mfi-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.mfi-desc {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.meeting-tip-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  font-size: 13px;
+  color: #1e40af;
+  line-height: 1.6;
+}
+
+/* 会议室设备清单 */
+.device-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.device-check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.dci-icon { font-size: 18px; flex-shrink: 0; }
+
+.dci-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.dci-desc {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+.dci-status {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.dci-status.online { background: #ecfdf5; color: #15803d; }
+.dci-status.offline { background: #fef2f2; color: #b91c1c; }
+
+.meeting-ticket-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 11px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  text-decoration: none;
+  transition: 0.15s ease;
+}
+
+.meeting-ticket-btn:hover { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+
+/* 扫描技巧网格 */
+.tips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.tip-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+.tip-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 3px;
+}
+
+.tip-desc {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .meeting-func-grid { grid-template-columns: repeat(2, 1fr); }
+  .interface-grid { grid-template-columns: 1fr; }
+  .tips-grid { grid-template-columns: 1fr; }
+  .key-grid { grid-template-columns: 1fr; }
+}

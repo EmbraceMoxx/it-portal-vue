@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <!-- 快速故障诊断（全宽） -->
+      <!-- 快速故障诊断 -->
       <div class="section-card" style="margin-bottom: 28px; padding: 0; overflow: hidden;">
         <DiagWizard />
       </div>
@@ -75,21 +75,6 @@
       <!-- 服务模块 -->
       <section class="module-grid">
         <ModuleCard v-for="item in displayModules" :key="item.key" :item="item" />
-      </section>
-
-      <!-- 常用链接（全宽） -->
-      <section class="section-card">
-        <h2 class="bottom-card-title">常用链接</h2>
-        <p class="bottom-card-sub">常用工具与官网入口</p>
-        <div class="quick-links-grid-wide">
-          <a v-for="link in quickLinks" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="ql-item">
-            <span class="ql-icon">{{ link.icon }}</span>
-            <div class="ql-text">
-              <div class="ql-label">{{ link.label }}</div>
-              <div class="ql-desc">{{ link.desc }}</div>
-            </div>
-          </a>
-        </div>
       </section>
 
       <!-- 入职清单 + 账号申请 -->
@@ -187,6 +172,21 @@
         </div>
       </section>
 
+      <!-- 常用链接 -->
+      <section class="section-card">
+        <h2 class="bottom-card-title">常用链接</h2>
+        <p class="bottom-card-sub">常用工具与官网入口</p>
+        <div class="quick-links-grid-wide">
+          <a v-for="link in quickLinks" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="ql-item">
+            <span class="ql-icon">{{ link.icon }}</span>
+            <div class="ql-text">
+              <div class="ql-label">{{ link.label }}</div>
+              <div class="ql-desc">{{ link.desc }}</div>
+            </div>
+          </a>
+        </div>
+      </section>
+
     </div>
   </div>
 </template>
@@ -204,7 +204,7 @@ import { policyItems } from '../data/it-policy'
 import { systemStatusList } from '../data/system-status'
 
 const displayModules = computed(() =>
-  modules.filter((m) => ['printer', 'erp', 'network', 'overseas-network', 'software'].includes(m.key))
+  modules.filter((m) => ['printer', 'network', 'overseas-network', 'meeting', 'erp', 'software'].includes(m.key))
 )
 
 const onlineCount = computed(() => systemStatusList.filter(s => s.status === 'online').length)
