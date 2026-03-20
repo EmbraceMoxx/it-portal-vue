@@ -8,7 +8,6 @@
           <div class="hw-badge">IT 内网服务门户</div>
           <h1 class="hw-title">IT 服务门户</h1>
           <p class="hw-desc">打印机安装 · 网络接入 · ERP 系统 · 常用软件<br>在这里找到入口和操作说明</p>
-          <!-- 搜索框 -->
           <SearchBar class="hw-search" />
         </div>
         <div class="hw-nav">
@@ -68,23 +67,9 @@
         </div>
       </div>
 
-      <!-- 快速故障诊断 + 资产看板入口 -->
-      <div class="home-two-grid" style="margin-top: 0; margin-bottom: 28px;">
+      <!-- 快速故障诊断（全宽） -->
+      <div class="section-card" style="margin-bottom: 28px; padding: 0; overflow: hidden;">
         <DiagWizard />
-        <RouterLink to="/assets" class="asset-entry-card">
-          <div class="aec-top">
-            <span class="aec-icon">🗂️</span>
-            <span class="aec-badge">{{ assetList.length }} 台设备</span>
-          </div>
-          <div class="aec-title">IT 资产看板</div>
-          <div class="aec-desc">查看公司所有 IT 设备台账，包括电脑、打印机、网络设备的归属、位置和状态。</div>
-          <div class="aec-stats">
-            <div class="aec-stat"><span class="aec-stat-num green">{{ inUseCount }}</span><span class="aec-stat-label">使用中</span></div>
-            <div class="aec-stat"><span class="aec-stat-num yellow">{{ repairCount }}</span><span class="aec-stat-label">维修中</span></div>
-            <div class="aec-stat"><span class="aec-stat-num blue">{{ idleCount }}</span><span class="aec-stat-label">闲置</span></div>
-          </div>
-          <div class="aec-arrow">查看全部 →</div>
-        </RouterLink>
       </div>
 
       <!-- 服务模块 -->
@@ -92,42 +77,20 @@
         <ModuleCard v-for="item in displayModules" :key="item.key" :item="item" />
       </section>
 
-      <!-- IT 支持 + 常用链接 -->
-      <div class="bottom-grid">
-        <section class="section-card">
-          <h2 class="bottom-card-title">IT 服务支持</h2>
-          <p class="bottom-card-sub">通过企业微信联系</p>
-          <div class="support-list-v">
-            <div class="slv-group">
-              <div class="slv-scope">电脑 · 网络 · 打印机</div>
-              <div class="slv-people">
-                <div class="slv-person"><div class="slv-av it">黎</div><span>黎灿</span></div>
-                <div class="slv-person"><div class="slv-av it">曹</div><span>曹杰珲</span></div>
-              </div>
+      <!-- 常用链接（全宽） -->
+      <section class="section-card">
+        <h2 class="bottom-card-title">常用链接</h2>
+        <p class="bottom-card-sub">常用工具与官网入口</p>
+        <div class="quick-links-grid-wide">
+          <a v-for="link in quickLinks" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="ql-item">
+            <span class="ql-icon">{{ link.icon }}</span>
+            <div class="ql-text">
+              <div class="ql-label">{{ link.label }}</div>
+              <div class="ql-desc">{{ link.desc }}</div>
             </div>
-            <div class="slv-divider"></div>
-            <div class="slv-group">
-              <div class="slv-scope">金蝶 ERP 系统</div>
-              <div class="slv-people">
-                <div class="slv-person"><div class="slv-av erp">王</div><span>王文林</span></div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="section-card">
-          <h2 class="bottom-card-title">常用链接</h2>
-          <p class="bottom-card-sub">常用工具与官网入口</p>
-          <div class="quick-links-grid">
-            <a v-for="link in quickLinks" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="ql-item">
-              <span class="ql-icon">{{ link.icon }}</span>
-              <div class="ql-text">
-                <div class="ql-label">{{ link.label }}</div>
-                <div class="ql-desc">{{ link.desc }}</div>
-              </div>
-            </a>
-          </div>
-        </section>
-      </div>
+          </a>
+        </div>
+      </section>
 
       <!-- 入职清单 + 账号申请 -->
       <div class="home-two-grid">
@@ -158,7 +121,7 @@
         </section>
       </div>
 
-      <!-- 设备使用规范（全宽横排） -->
+      <!-- 设备使用规范 -->
       <section class="section-card">
         <div class="section-head">
           <div>
@@ -177,7 +140,7 @@
         </div>
       </section>
 
-      <!-- 常见故障自查（全宽两列） -->
+      <!-- 常见故障自查 -->
       <section id="faq" class="section-card">
         <div class="section-head">
           <div>
@@ -239,16 +202,12 @@ import { faqItems } from '../data/faq'
 import { onboardingItems } from '../data/onboarding'
 import { policyItems } from '../data/it-policy'
 import { systemStatusList } from '../data/system-status'
-import { assetList } from '../data/assets'
 
 const displayModules = computed(() =>
   modules.filter((m) => ['printer', 'erp', 'network', 'overseas-network', 'software'].includes(m.key))
 )
 
 const onlineCount = computed(() => systemStatusList.filter(s => s.status === 'online').length)
-const inUseCount = computed(() => assetList.filter(a => a.status === 'in-use').length)
-const repairCount = computed(() => assetList.filter(a => a.status === 'repair').length)
-const idleCount = computed(() => assetList.filter(a => a.status === 'idle').length)
 
 const todayStr = computed(() => {
   const d = new Date()

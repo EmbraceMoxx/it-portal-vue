@@ -3663,3 +3663,370 @@ button {
 }
 
 .speed-retest-btn:hover { background: #f1f5f9; }
+
+/* ===== 悬浮按钮组 ===== */
+.float-group {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* 把原来 float-contact 的 fixed 定位改为相对于 float-group */
+.float-group .float-contact {
+  position: static;
+}
+
+.float-group .ai-chat-wrap {
+  position: static;
+}
+
+/* ===== AI 问答窗口 ===== */
+.ai-chat-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.ai-float-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px 0 14px;
+  height: 52px;
+  border-radius: 999px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(99,102,241,0.4);
+  transition: 0.18s ease;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ai-float-btn:hover { background: #4f46e5; transform: translateY(-1px); }
+.ai-float-btn.active { padding: 0 14px; border-radius: 50%; width: 52px; }
+
+.ai-float-label { white-space: nowrap; }
+
+.ai-icon-fade-enter-active,
+.ai-icon-fade-leave-active { transition: all 0.15s ease; }
+.ai-icon-fade-enter-from,
+.ai-icon-fade-leave-to { opacity: 0; transform: scale(0.7); }
+
+/* 聊天面板 */
+.ai-chat-panel {
+  width: 360px;
+  height: 520px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(15,23,42,0.16);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ai-chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  background: #6366f1;
+  flex-shrink: 0;
+}
+
+.ai-chat-head-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-avatar-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ai-avatar-dot::after { content: '🤖'; }
+
+.ai-chat-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ai-chat-status {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 1px;
+}
+
+.ai-chat-close {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.ai-chat-close:hover { background: rgba(255,255,255,0.25); }
+
+/* 消息区 */
+.ai-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+
+.ai-msg {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.ai-msg-user {
+  flex-direction: row-reverse;
+}
+
+.ai-msg-avatar {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+
+.ai-msg-bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.ai-msg-bot .ai-msg-bubble {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-bottom-left-radius: 4px;
+}
+
+.ai-msg-user .ai-msg-bubble {
+  background: #6366f1;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.ai-msg-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* 快捷问题 */
+.ai-quick-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 36px;
+}
+
+.ai-quick-btn {
+  text-align: left;
+  padding: 7px 12px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #475569;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.ai-quick-btn:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+/* 打字动画 */
+.ai-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+}
+
+.ai-typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+  animation: ai-bounce 1.2s infinite;
+}
+
+.ai-typing span:nth-child(2) { animation-delay: 0.2s; }
+.ai-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes ai-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* 输入区 */
+.ai-chat-input-wrap {
+  border-top: 1px solid #f1f5f9;
+  padding: 12px 14px 10px;
+  flex-shrink: 0;
+}
+
+.ai-chat-input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.ai-chat-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 13px;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  line-height: 1.5;
+  max-height: 120px;
+  overflow-y: auto;
+  transition: border-color 0.15s;
+  color: #0f172a;
+  background: #fff;
+}
+
+.ai-chat-input:focus { border-color: #6366f1; }
+
+.ai-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: 0.15s;
+}
+
+.ai-send-btn:hover:not(:disabled) { background: #4f46e5; }
+.ai-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ai-chat-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.ai-model-tag {
+  padding: 2px 7px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  color: #64748b;
+}
+
+/* 消息内容格式化 */
+.ai-code {
+  font-family: monospace;
+  font-size: 12px;
+  background: #f1f5f9;
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: #0f172a;
+}
+
+.ai-msg-user .ai-code {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.ai-link {
+  color: #6366f1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ai-msg-user .ai-link { color: #c7d2fe; }
+
+/* 常用链接全宽网格 */
+.quick-links-grid-wide {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .quick-links-grid-wide { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .quick-links-grid-wide { grid-template-columns: repeat(2, 1fr); }
+  .ai-chat-panel { width: calc(100vw - 32px); }
+}
+
+/* 暗色模式 AI 面板 */
+:root.dark .ai-chat-panel {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+:root.dark .ai-msg-bot .ai-msg-bubble {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+:root.dark .ai-chat-input {
+  background: #0f172a;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+:root.dark .ai-quick-btn {
+  background: #0f172a;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+:root.dark .ai-chat-input-wrap {
+  border-top-color: #334155;
+}
+
+:root.dark .ai-code {
+  background: #334155;
+  color: #e2e8f0;
+}

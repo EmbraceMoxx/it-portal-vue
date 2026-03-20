@@ -20,8 +20,11 @@
 
   <RouterView />
 
-  <!-- 悬浮联系 IT -->
-  <FloatContact />
+  <!-- 悬浮按钮组 -->
+  <div class="float-group">
+    <AiChat />
+    <FloatContact />
+  </div>
 
   <!-- Toast -->
   <transition name="top-toast-fade">
@@ -36,6 +39,7 @@ import { onMounted } from 'vue'
 import { toastState } from './composables/useClipboard'
 import { useTheme } from './composables/useTheme'
 import FloatContact from './components/FloatContact.vue'
+import AiChat from './components/AiChat.vue'
 import { announcements } from './data/announcements'
 
 const { isDark, toggleTheme, initTheme } = useTheme()
