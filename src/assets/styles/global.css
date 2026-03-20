@@ -1796,3 +1796,94 @@ button {
   color: #94a3b8;
   margin-top: 1px;
 }
+
+/* 知识库网格 */
+.yuque-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* 新员工入职清单 */
+.onboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.onboard-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.onboard-step {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0f172a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.onboard-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.onboard-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.onboard-desc {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* 设备使用规范 */
+.policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.policy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.policy-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.policy-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.policy-desc {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+  line-height: 1.6;
+}
