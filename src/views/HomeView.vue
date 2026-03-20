@@ -68,6 +68,25 @@
         </div>
       </div>
 
+      <!-- 快速故障诊断 + 资产看板入口 -->
+      <div class="home-two-grid" style="margin-top: 0; margin-bottom: 28px;">
+        <DiagWizard />
+        <RouterLink to="/assets" class="asset-entry-card">
+          <div class="aec-top">
+            <span class="aec-icon">🗂️</span>
+            <span class="aec-badge">{{ assetList.length }} 台设备</span>
+          </div>
+          <div class="aec-title">IT 资产看板</div>
+          <div class="aec-desc">查看公司所有 IT 设备台账，包括电脑、打印机、网络设备的归属、位置和状态。</div>
+          <div class="aec-stats">
+            <div class="aec-stat"><span class="aec-stat-num green">{{ inUseCount }}</span><span class="aec-stat-label">使用中</span></div>
+            <div class="aec-stat"><span class="aec-stat-num yellow">{{ repairCount }}</span><span class="aec-stat-label">维修中</span></div>
+            <div class="aec-stat"><span class="aec-stat-num blue">{{ idleCount }}</span><span class="aec-stat-label">闲置</span></div>
+          </div>
+          <div class="aec-arrow">查看全部 →</div>
+        </RouterLink>
+      </div>
+
       <!-- 服务模块 -->
       <section class="module-grid">
         <ModuleCard v-for="item in displayModules" :key="item.key" :item="item" />
@@ -213,18 +232,23 @@
 import { computed } from 'vue'
 import ModuleCard from '../components/ModuleCard.vue'
 import SearchBar from '../components/SearchBar.vue'
+import DiagWizard from '../components/DiagWizard.vue'
 import { modules } from '../data/modules'
 import { quickLinks } from '../data/quick-links'
 import { faqItems } from '../data/faq'
 import { onboardingItems } from '../data/onboarding'
 import { policyItems } from '../data/it-policy'
 import { systemStatusList } from '../data/system-status'
+import { assetList } from '../data/assets'
 
 const displayModules = computed(() =>
   modules.filter((m) => ['printer', 'erp', 'network', 'overseas-network', 'software'].includes(m.key))
 )
 
 const onlineCount = computed(() => systemStatusList.filter(s => s.status === 'online').length)
+const inUseCount = computed(() => assetList.filter(a => a.status === 'in-use').length)
+const repairCount = computed(() => assetList.filter(a => a.status === 'repair').length)
+const idleCount = computed(() => assetList.filter(a => a.status === 'idle').length)
 
 const todayStr = computed(() => {
   const d = new Date()

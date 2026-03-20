@@ -4,13 +4,18 @@
     <div class="ticker-label">📢 公告</div>
     <div class="ticker-track">
       <div class="ticker-inner" :style="{ animationDuration: `${announcements.length * 8}s` }">
-        <span v-for="item in [...announcements, ...announcements]" :key="item.id + Math.random()" class="ticker-item">
+        <span v-for="(item, i) in [...announcements, ...announcements]" :key="`${item.id}-${i}`" class="ticker-item">
           <span class="ticker-tag" :class="`ticker-tag-${item.tagColor}`">{{ item.tag }}</span>
           {{ item.title }}
           <span class="ticker-sep">·</span>
         </span>
       </div>
     </div>
+    <!-- 暗色模式切换 -->
+    <button class="theme-toggle" @click="toggleTheme" :title="isDark ? '切换亮色模式' : '切换暗色模式'">
+      <span v-if="isDark">☀️</span>
+      <span v-else>🌙</span>
+    </button>
   </div>
 
   <RouterView />
@@ -27,7 +32,12 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { toastState } from './composables/useClipboard'
+import { useTheme } from './composables/useTheme'
 import FloatContact from './components/FloatContact.vue'
 import { announcements } from './data/announcements'
+
+const { isDark, toggleTheme, initTheme } = useTheme()
+onMounted(initTheme)
 </script>

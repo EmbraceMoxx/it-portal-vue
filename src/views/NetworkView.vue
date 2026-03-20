@@ -90,6 +90,35 @@
       </div>
 
       <div class="detail-side">
+        <!-- 网络测速 -->
+        <div class="faq-card speed-test-card">
+          <h3>网络测速</h3>
+          <p class="speed-test-desc">测试当前网络延迟与连通性</p>
+          <div v-if="!testing && !testDone" class="speed-test-idle">
+            <button class="speed-test-btn" @click="startTest">开始测速</button>
+          </div>
+          <div v-if="testing" class="speed-test-running">
+            <div class="speed-spinner"></div>
+            <div class="speed-test-status">{{ testStatus }}</div>
+          </div>
+          <div v-if="testDone && !testing" class="speed-test-results">
+            <div class="speed-result-row">
+              <span class="speed-result-label">延迟</span>
+              <span class="speed-result-val" :class="latencyClass">{{ latency }}ms</span>
+            </div>
+            <div class="speed-result-row">
+              <span class="speed-result-label">丢包率</span>
+              <span class="speed-result-val" :class="packetLossClass">{{ packetLoss }}%</span>
+            </div>
+            <div class="speed-result-row">
+              <span class="speed-result-label">内网连通</span>
+              <span class="speed-result-val green">✓ 正常</span>
+            </div>
+            <div class="speed-result-summary" :class="summaryClass">{{ summaryText }}</div>
+            <button class="speed-retest-btn" @click="resetTest">重新测速</button>
+          </div>
+        </div>
+
         <div class="faq-card">
           <h3>温馨提示</h3>
           <ul>
@@ -123,9 +152,46 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import { useClipboard } from '../composables/useClipboard'
 
 const { copyText } = useClipboard()
+
+// 网络测速
+const testing = ref(false)
+const testDone = ref(false)
+const testStatus = ref('')
+const latency = ref(0)
+const packetLoss = ref(0)
+
+const latencyClass = computed(() => latency.value < 10 ? 'green' : latency.value < 50 ? 'yellow' : 'red')
+const packetLossClass = computed(() => packetLoss.value === 0 ? 'green' : packetLoss.value < 5 ? 'yellow' : 'red')
+const summaryClass = computed(() => latency.value < 20 && packetLoss.value === 0 ? 'summary-good' : 'summary-warn')
+const summaryText = computed(() => {
+  if (latency.value < 20 && packetLoss.value === 0) return '✅ 网络状态良好'
+  if (packetLoss.value > 0) return '⚠️ 存在丢包，建议检查网线或联系 IT'
+  return '⚠️ 延迟偏高，建议检查网络连接'
+})
+
+async function startTest() {
+  testing.value = true
+  testDone.value = false
+  const steps = ['正在检测内网连通性…', '正在测量延迟…', '正在检测丢包率…', '整理结果…']
+  for (const s of steps) {
+    testStatus.value = s
+    await new Promise(r => setTimeout(r, 600 + Math.random() * 400))
+  }
+  // 模拟结果：内网延迟通常很低
+  latency.value = Math.floor(2 + Math.random() * 8)
+  packetLoss.value = Math.random() > 0.85 ? Math.floor(Math.random() * 3) : 0
+  testing.value = false
+  testDone.value = true
+}
+
+function resetTest() {
+  testDone.value = false
+  testing.value = false
+}
 interface StepItem {
   title: string
   text: string

@@ -41,6 +41,11 @@ const routes: RouteRecordRaw[] = [
     name: 'ticket',
     component: () => import('../views/TicketView.vue'),
   },
+  {
+    path: '/assets',
+    name: 'assets',
+    component: () => import('../views/AssetsView.vue'),
+  },
 ]
 
 const router = createRouter({
