@@ -40,10 +40,7 @@
                 </button>
               </span>
             </div>
-            <div class="contact-banner">
-              <span class="credential-icon">💬</span>
-              <span>遇到问题？通过企业微信联系运维：<strong>黎灿</strong> 或 <strong>曹杰珲</strong></span>
-            </div>
+
           </div>
 
           <div class="step-list">
