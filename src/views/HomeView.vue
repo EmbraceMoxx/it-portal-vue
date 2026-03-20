@@ -2,26 +2,14 @@
   <div class="container">
     <section class="hero">
       <div class="hero-grid">
-        <div>
+        <div class="hero-main">
           <div class="eyebrow">IT 内网服务门户</div>
-          <h1>常用 IT 服务入口</h1>
-          <p>
-            在这里可以快速找到打印机安装、ERP 入口、办公网络、海外网络、常用软件等服务。
-            先查看首页概览，再进入对应页面查看详细说明和操作步骤。
-          </p>
-
-          <div class="badge-row">
-            <span class="badge green">常用服务</span>
-            <span class="badge blue">操作指引</span>
-            <span class="badge orange">快速入口</span>
-          </div>
+          <h1>需要帮助？</h1>
+          <p>打印机安装、网络接入、ERP 系统、常用软件，在这里找到对应入口和操作说明。</p>
         </div>
 
         <div class="hero-side">
-          <div class="support-header">
-            <span class="support-badge">💬 企业微信联系</span>
-            <h2>遇到问题找谁？</h2>
-          </div>
+          <div class="support-title">IT 服务联系人</div>
           <div class="support-list">
             <div class="support-group">
               <div class="support-group-label">电脑 · 网络 · 打印机</div>
@@ -46,6 +34,7 @@
               </div>
             </div>
           </div>
+          <div class="support-tip">优先通过企业微信联系</div>
         </div>
       </div>
     </section>
