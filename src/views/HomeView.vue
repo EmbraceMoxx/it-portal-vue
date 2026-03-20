@@ -121,7 +121,6 @@
               </div>
             </div>
           </div>
-
         </section>
 
         <!-- 常用链接 -->
@@ -148,6 +147,133 @@
 
       </div>
 
+      <!-- IT 公告 -->
+      <section class="section-card">
+        <div class="section-head">
+          <div>
+            <h2>IT 公告</h2>
+            <div class="section-subtitle">维护通知、设备更新、系统变更</div>
+          </div>
+        </div>
+        <div class="announce-list">
+          <div v-for="item in announcements" :key="item.id" class="announce-item">
+            <span class="announce-tag" :class="`announce-tag-${item.tagColor}`">{{ item.tag }}</span>
+            <span class="announce-title">{{ item.title }}</span>
+            <span class="announce-date">{{ item.date }}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 底部三列：故障自查 + 语雀文档 + 账号申请 -->
+      <div class="home-tri-grid">
+
+        <!-- 常见故障自查 -->
+        <section class="section-card">
+          <h2 class="bottom-card-title">常见故障自查</h2>
+          <p class="bottom-card-sub">遇到问题先查这里</p>
+          <div class="faq-simple-list">
+            <div v-for="item in faqItems" :key="item.q" class="faq-simple-item">
+              <div class="faq-simple-q">{{ item.q }}</div>
+              <div class="faq-simple-a">{{ item.a }}</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 语雀知识库 -->
+        <section class="section-card">
+          <h2 class="bottom-card-title">IT 知识库</h2>
+          <p class="bottom-card-sub">语雀文档，详细操作说明</p>
+          <div class="yuque-list">
+            <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
+              <span class="yuque-icon">🖨️</span>
+              <div>
+                <div class="yuque-label">打印机安装说明</div>
+                <div class="yuque-desc">驱动安装、共享盘连接步骤</div>
+              </div>
+            </a>
+            <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
+              <span class="yuque-icon">🌐</span>
+              <div>
+                <div class="yuque-label">网络接入说明</div>
+                <div class="yuque-desc">有线、无线、海外网络配置</div>
+              </div>
+            </a>
+            <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
+              <span class="yuque-icon">💿</span>
+              <div>
+                <div class="yuque-label">常用软件安装</div>
+                <div class="yuque-desc">办公软件、驱动下载地址</div>
+              </div>
+            </a>
+            <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
+              <span class="yuque-icon">📦</span>
+              <div>
+                <div class="yuque-label">金蝶 ERP 使用手册</div>
+                <div class="yuque-desc">登录、操作、常见问题</div>
+              </div>
+            </a>
+            <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
+              <span class="yuque-icon">🔑</span>
+              <div>
+                <div class="yuque-label">账号与权限申请</div>
+                <div class="yuque-desc">新员工入职、权限变更流程</div>
+              </div>
+            </a>
+            <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
+              <span class="yuque-icon">🛠️</span>
+              <div>
+                <div class="yuque-label">IT 故障排查手册</div>
+                <div class="yuque-desc">常见问题处理步骤汇总</div>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- 账号与权限申请 -->
+        <section class="section-card">
+          <h2 class="bottom-card-title">账号 &amp; 权限申请</h2>
+          <p class="bottom-card-sub">通过企业微信联系 IT 处理</p>
+          <div class="apply-list">
+            <div class="apply-item">
+              <div class="apply-icon">👤</div>
+              <div>
+                <div class="apply-label">新员工账号开通</div>
+                <div class="apply-desc">Windows 登录账号、内网权限</div>
+              </div>
+            </div>
+            <div class="apply-item">
+              <div class="apply-icon">📧</div>
+              <div>
+                <div class="apply-label">企业邮箱申请</div>
+                <div class="apply-desc">公司邮箱开通与配置</div>
+              </div>
+            </div>
+            <div class="apply-item">
+              <div class="apply-icon">📦</div>
+              <div>
+                <div class="apply-label">ERP 账号 &amp; 权限</div>
+                <div class="apply-desc">金蝶系统账号开通、模块权限</div>
+              </div>
+            </div>
+            <div class="apply-item">
+              <div class="apply-icon">💿</div>
+              <div>
+                <div class="apply-label">软件安装申请</div>
+                <div class="apply-desc">需要安装特定软件时联系 IT</div>
+              </div>
+            </div>
+            <div class="apply-item">
+              <div class="apply-icon">🖨️</div>
+              <div>
+                <div class="apply-label">打印机权限</div>
+                <div class="apply-desc">添加或更换打印机</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
     </div>
   </div>
 </template>
@@ -159,6 +285,8 @@ import PrinterCard from '../components/PrinterCard.vue'
 import { modules } from '../data/modules'
 import { printers, PRINTER_SHARE_PATH } from '../data/printers'
 import { quickLinks } from '../data/quick-links'
+import { announcements } from '../data/announcements'
+import { faqItems } from '../data/faq'
 import { useClipboard } from '../composables/useClipboard'
 
 const sharePath = PRINTER_SHARE_PATH

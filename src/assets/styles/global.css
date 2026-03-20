@@ -1632,3 +1632,167 @@ button {
 .it-contact-desc strong {
   color: #78350f;
 }
+
+/* IT 公告 */
+.announce-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.announce-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.announce-tag {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.announce-tag-blue  { background: #eff6ff; color: #1d4ed8; }
+.announce-tag-orange { background: #fff7ed; color: #c2410c; }
+.announce-tag-green { background: #ecfdf5; color: #047857; }
+
+.announce-title {
+  flex: 1;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.announce-date {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* 底部三列 */
+.home-tri-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+@media (max-width: 1100px) {
+  .home-tri-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-tri-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 常见故障自查 */
+.faq-simple-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq-simple-item {
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.faq-simple-q {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.faq-simple-a {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* 语雀知识库 */
+.yuque-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.yuque-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.15s ease;
+}
+
+.yuque-item:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.yuque-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.yuque-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.yuque-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+/* 账号申请 */
+.apply-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.apply-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.apply-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.apply-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.apply-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 1px;
+}
