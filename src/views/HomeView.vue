@@ -8,6 +8,8 @@
           <div class="hw-badge">IT 内网服务门户</div>
           <h1 class="hw-title">IT 服务门户</h1>
           <p class="hw-desc">打印机安装 · 网络接入 · ERP 系统 · 常用软件<br>在这里找到入口和操作说明</p>
+          <!-- 搜索框 -->
+          <SearchBar class="hw-search" />
         </div>
         <div class="hw-nav">
           <RouterLink class="hw-nav-item" to="/printer">
@@ -22,13 +24,17 @@
             <span class="hw-nav-icon">🚀</span>
             <span class="hw-nav-label">海外网络</span>
           </RouterLink>
+          <RouterLink class="hw-nav-item" to="/status">
+            <span class="hw-nav-icon">📊</span>
+            <span class="hw-nav-label">系统状态</span>
+          </RouterLink>
+          <RouterLink class="hw-nav-item" to="/ticket">
+            <span class="hw-nav-icon">📋</span>
+            <span class="hw-nav-label">提交工单</span>
+          </RouterLink>
           <div class="hw-nav-item hw-nav-disabled">
             <span class="hw-nav-icon">📦</span>
             <span class="hw-nav-label">金蝶 ERP</span>
-          </div>
-          <div class="hw-nav-item hw-nav-disabled">
-            <span class="hw-nav-icon">💿</span>
-            <span class="hw-nav-label">常用软件</span>
           </div>
         </div>
       </div>
@@ -36,15 +42,39 @@
 
     <div class="container">
 
+      <!-- 今日 IT 状态 -->
+      <div class="today-status-bar">
+        <div class="tsb-left">
+          <span class="tsb-date">{{ todayStr }}</span>
+          <span class="tsb-divider"></span>
+          <span class="tsb-status-dot online"></span>
+          <span class="tsb-status-text">所有系统正常运行</span>
+        </div>
+        <div class="tsb-right">
+          <RouterLink to="/status" class="tsb-stat">
+            <span class="tsb-stat-num green">{{ onlineCount }}</span>
+            <span class="tsb-stat-label">在线设备</span>
+          </RouterLink>
+          <div class="tsb-stat-sep"></div>
+          <RouterLink to="/ticket" class="tsb-stat">
+            <span class="tsb-stat-num blue">1</span>
+            <span class="tsb-stat-label">处理中工单</span>
+          </RouterLink>
+          <div class="tsb-stat-sep"></div>
+          <RouterLink to="/status" class="tsb-stat">
+            <span class="tsb-stat-num yellow">1</span>
+            <span class="tsb-stat-label">异常设备</span>
+          </RouterLink>
+        </div>
+      </div>
+
       <!-- 服务模块 -->
       <section class="module-grid">
         <ModuleCard v-for="item in displayModules" :key="item.key" :item="item" />
       </section>
 
-      <!-- 底部两列：IT 支持 + 常用链接 -->
+      <!-- IT 支持 + 常用链接 -->
       <div class="bottom-grid">
-
-        <!-- IT 服务支持 -->
         <section class="section-card">
           <h2 class="bottom-card-title">IT 服务支持</h2>
           <p class="bottom-card-sub">通过企业微信联系</p>
@@ -65,20 +95,11 @@
             </div>
           </div>
         </section>
-
-        <!-- 常用链接 -->
         <section class="section-card">
           <h2 class="bottom-card-title">常用链接</h2>
           <p class="bottom-card-sub">常用工具与官网入口</p>
           <div class="quick-links-grid">
-            <a
-              v-for="link in quickLinks"
-              :key="link.url"
-              :href="link.url"
-              target="_blank"
-              rel="noopener"
-              class="ql-item"
-            >
+            <a v-for="link in quickLinks" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="ql-item">
               <span class="ql-icon">{{ link.icon }}</span>
               <div class="ql-text">
                 <div class="ql-label">{{ link.label }}</div>
@@ -87,42 +108,10 @@
             </a>
           </div>
         </section>
-
       </div>
 
-      <!-- IT 公告 -->
-      <section class="section-card">
-        <div class="section-head">
-          <div>
-            <h2>IT 公告</h2>
-            <div class="section-subtitle">维护通知、设备更新、系统变更</div>
-          </div>
-        </div>
-        <div class="announce-list">
-          <div v-for="item in announcements" :key="item.id" class="announce-item">
-            <span class="announce-tag" :class="`announce-tag-${item.tagColor}`">{{ item.tag }}</span>
-            <span class="announce-title">{{ item.title }}</span>
-            <span class="announce-date">{{ item.date }}</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 底部三列：故障自查 + 入职清单 + 账号申请&规范 -->
-      <div class="home-tri-grid">
-
-        <!-- 常见故障自查 -->
-        <section class="section-card">
-          <h2 class="bottom-card-title">常见故障自查</h2>
-          <p class="bottom-card-sub">遇到问题先查这里</p>
-          <div class="faq-simple-list">
-            <div v-for="item in faqItems" :key="item.q" class="faq-simple-item">
-              <div class="faq-simple-q">{{ item.q }}</div>
-              <div class="faq-simple-a">{{ item.a }}</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 新员工 IT 入职清单 -->
+      <!-- 入职清单 + 账号申请 -->
+      <div class="home-two-grid">
         <section class="section-card">
           <h2 class="bottom-card-title">新员工 IT 入职清单</h2>
           <p class="bottom-card-sub">入职第一天需要完成的 IT 配置</p>
@@ -137,37 +126,54 @@
             </div>
           </div>
         </section>
-
-        <!-- 账号申请 + 设备规范 -->
-        <div style="display:flex;flex-direction:column;gap:24px">
-          <section class="section-card">
-            <h2 class="bottom-card-title">账号 &amp; 权限申请</h2>
-            <p class="bottom-card-sub">通过企业微信联系 IT 处理</p>
-            <div class="apply-list">
-              <div class="apply-item"><div class="apply-icon">👤</div><div><div class="apply-label">新员工账号开通</div><div class="apply-desc">Windows 登录账号、内网权限</div></div></div>
-              <div class="apply-item"><div class="apply-icon">📧</div><div><div class="apply-label">企业邮箱申请</div><div class="apply-desc">公司邮箱开通与配置</div></div></div>
-              <div class="apply-item"><div class="apply-icon">📦</div><div><div class="apply-label">ERP 账号 &amp; 权限</div><div class="apply-desc">金蝶系统账号开通、模块权限</div></div></div>
-              <div class="apply-item"><div class="apply-icon">💿</div><div><div class="apply-label">软件安装申请</div><div class="apply-desc">需要安装特定软件时联系 IT</div></div></div>
-              <div class="apply-item"><div class="apply-icon">🖨️</div><div><div class="apply-label">打印机权限</div><div class="apply-desc">添加或更换打印机</div></div></div>
-            </div>
-          </section>
-
-          <section class="section-card">
-            <h2 class="bottom-card-title">设备使用规范</h2>
-            <p class="bottom-card-sub">保障设备安全与数据安全</p>
-            <div class="policy-list">
-              <div v-for="item in policyItems" :key="item.title" class="policy-item">
-                <span class="policy-icon">{{ item.icon }}</span>
-                <div>
-                  <div class="policy-title">{{ item.title }}</div>
-                  <div class="policy-desc">{{ item.desc }}</div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
+        <section class="section-card">
+          <h2 class="bottom-card-title">账号 &amp; 权限申请</h2>
+          <p class="bottom-card-sub">通过企业微信联系 IT 处理</p>
+          <div class="apply-list">
+            <div class="apply-item"><div class="apply-icon">👤</div><div><div class="apply-label">新员工账号开通</div><div class="apply-desc">Windows 登录账号、内网权限</div></div></div>
+            <div class="apply-item"><div class="apply-icon">📧</div><div><div class="apply-label">企业邮箱申请</div><div class="apply-desc">公司邮箱开通与配置</div></div></div>
+            <div class="apply-item"><div class="apply-icon">📦</div><div><div class="apply-label">ERP 账号 &amp; 权限</div><div class="apply-desc">金蝶系统账号开通、模块权限</div></div></div>
+            <div class="apply-item"><div class="apply-icon">💿</div><div><div class="apply-label">软件安装申请</div><div class="apply-desc">需要安装特定软件时联系 IT</div></div></div>
+            <div class="apply-item"><div class="apply-icon">🖨️</div><div><div class="apply-label">打印机权限</div><div class="apply-desc">添加或更换打印机</div></div></div>
+          </div>
+        </section>
       </div>
+
+      <!-- 设备使用规范（全宽横排） -->
+      <section class="section-card">
+        <div class="section-head">
+          <div>
+            <h2>设备使用规范</h2>
+            <div class="section-subtitle">保障设备安全与数据安全</div>
+          </div>
+        </div>
+        <div class="policy-grid">
+          <div v-for="item in policyItems" :key="item.title" class="policy-item">
+            <span class="policy-icon">{{ item.icon }}</span>
+            <div>
+              <div class="policy-title">{{ item.title }}</div>
+              <div class="policy-desc">{{ item.desc }}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 常见故障自查（全宽两列） -->
+      <section id="faq" class="section-card">
+        <div class="section-head">
+          <div>
+            <h2>常见故障自查</h2>
+            <div class="section-subtitle">遇到问题先查这里</div>
+          </div>
+          <RouterLink to="/ticket" class="btn-link">遇到其他问题？提交工单 →</RouterLink>
+        </div>
+        <div class="faq-two-grid">
+          <div v-for="item in faqItems" :key="item.q" class="faq-simple-item">
+            <div class="faq-simple-q">{{ item.q }}</div>
+            <div class="faq-simple-a">{{ item.a }}</div>
+          </div>
+        </div>
+      </section>
 
       <!-- IT 知识库 -->
       <section class="section-card">
@@ -206,14 +212,22 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import ModuleCard from '../components/ModuleCard.vue'
+import SearchBar from '../components/SearchBar.vue'
 import { modules } from '../data/modules'
 import { quickLinks } from '../data/quick-links'
-import { announcements } from '../data/announcements'
 import { faqItems } from '../data/faq'
 import { onboardingItems } from '../data/onboarding'
 import { policyItems } from '../data/it-policy'
+import { systemStatusList } from '../data/system-status'
 
 const displayModules = computed(() =>
   modules.filter((m) => ['printer', 'erp', 'network', 'overseas-network', 'software'].includes(m.key))
 )
+
+const onlineCount = computed(() => systemStatusList.filter(s => s.status === 'online').length)
+
+const todayStr = computed(() => {
+  const d = new Date()
+  return `${d.getFullYear()} 年 ${d.getMonth() + 1} 月 ${d.getDate()} 日`
+})
 </script>
