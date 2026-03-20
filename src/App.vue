@@ -20,6 +20,9 @@
 
   <RouterView />
 
+  <!-- Footer -->
+  <AppFooter />
+
   <!-- 悬浮按钮组 -->
   <div class="float-group">
     <AiChat />
@@ -40,6 +43,7 @@ import { toastState } from './composables/useClipboard'
 import { useTheme } from './composables/useTheme'
 import FloatContact from './components/FloatContact.vue'
 import AiChat from './components/AiChat.vue'
+import AppFooter from './components/AppFooter.vue'
 import { announcements } from './data/announcements'
 
 const { isDark, toggleTheme, initTheme } = useTheme()
