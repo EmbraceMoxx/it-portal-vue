@@ -5,8 +5,8 @@
     <div class="hero-wrap">
       <div class="hw-inner">
         <div class="hw-left">
-          <div class="hw-badge">IT 内网服务门户</div>
-          <h1 class="hw-title">IT 服务门户</h1>
+          <div class="hw-badge">水卫士 IT 内网服务门户</div>
+          <h1 class="hw-title">水卫士<br><span class="hw-title-accent">IT 服务门户</span></h1>
           <p class="hw-desc">打印机安装 · 网络接入 · ERP 系统 · 常用软件<br>在这里找到入口和操作说明</p>
           <SearchBar class="hw-search" />
         </div>
@@ -46,8 +46,8 @@
         <div class="tsb-left">
           <span class="tsb-date">{{ todayStr }}</span>
           <span class="tsb-divider"></span>
-          <span class="tsb-status-dot online"></span>
-          <span class="tsb-status-text">所有系统正常运行</span>
+          <span class="tsb-status-dot" :class="overallStatusClass"></span>
+          <span class="tsb-status-text">{{ overallStatusText }}</span>
         </div>
         <div class="tsb-right">
           <RouterLink to="/status" class="tsb-stat">
@@ -61,7 +61,7 @@
           </RouterLink>
           <div class="tsb-stat-sep"></div>
           <RouterLink to="/status" class="tsb-stat">
-            <span class="tsb-stat-num yellow">1</span>
+            <span class="tsb-stat-num" :class="degradedCount > 0 ? 'yellow' : 'green'">{{ degradedCount }}</span>
             <span class="tsb-stat-label">异常设备</span>
           </RouterLink>
         </div>
@@ -96,12 +96,13 @@
         <section class="section-card">
           <h2 class="bottom-card-title">账号 &amp; 权限申请</h2>
           <p class="bottom-card-sub">通过企业微信联系 IT 处理</p>
-          <div class="apply-list">
+          <div class="apply-grid">
             <div class="apply-item"><div class="apply-icon">👤</div><div><div class="apply-label">新员工账号开通</div><div class="apply-desc">Windows 登录账号、内网权限</div></div></div>
             <div class="apply-item"><div class="apply-icon">📧</div><div><div class="apply-label">企业邮箱申请</div><div class="apply-desc">公司邮箱开通与配置</div></div></div>
             <div class="apply-item"><div class="apply-icon">📦</div><div><div class="apply-label">ERP 账号 &amp; 权限</div><div class="apply-desc">金蝶系统账号开通、模块权限</div></div></div>
             <div class="apply-item"><div class="apply-icon">💿</div><div><div class="apply-label">软件安装申请</div><div class="apply-desc">需要安装特定软件时联系 IT</div></div></div>
             <div class="apply-item"><div class="apply-icon">🖨️</div><div><div class="apply-label">打印机权限</div><div class="apply-desc">添加或更换打印机</div></div></div>
+            <div class="apply-item"><div class="apply-icon">🔐</div><div><div class="apply-label">离职账号注销</div><div class="apply-desc">员工离职后账号权限回收</div></div></div>
           </div>
         </section>
       </div>
@@ -208,6 +209,19 @@ const displayModules = computed(() =>
 )
 
 const onlineCount = computed(() => systemStatusList.filter(s => s.status === 'online').length)
+const degradedCount = computed(() => systemStatusList.filter(s => s.status === 'degraded').length)
+
+const overallStatusClass = computed(() => {
+  if (systemStatusList.some(s => s.status === 'offline')) return 'offline'
+  if (degradedCount.value > 0) return 'degraded'
+  return 'online'
+})
+
+const overallStatusText = computed(() => {
+  if (systemStatusList.some(s => s.status === 'offline')) return '存在服务中断'
+  if (degradedCount.value > 0) return `${degradedCount.value} 个设备异常`
+  return '所有系统正常运行'
+})
 
 const todayStr = computed(() => {
   const d = new Date()

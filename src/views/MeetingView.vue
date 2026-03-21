@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container page-meeting">
     <div class="breadcrumb">
       <RouterLink to="/">首页</RouterLink>
       <span>/</span>
@@ -22,8 +22,8 @@
         :class="{ active: activeTab === tab.key }"
         @click="activeTab = tab.key"
       >
-        <span>{{ tab.icon }}</span>
-        <span>{{ tab.label }}</span>
+        <span class="meeting-tab-icon">{{ tab.icon }}</span>
+        <span class="meeting-tab-label">{{ tab.label }}</span>
       </button>
     </div>
 

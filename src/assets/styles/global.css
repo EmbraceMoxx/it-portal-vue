@@ -35,8 +35,8 @@ a {
 /* Hero 全宽 */
 .hero-wrap {
   width: 100%;
-  background: #0f172a;
-  padding: 64px 0 56px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #0f172a 100%);
+  padding: 72px 0 64px;
   margin-bottom: 36px;
   position: relative;
   overflow: hidden;
@@ -101,11 +101,11 @@ a {
 
 .hw-title {
   margin: 0 0 20px;
-  font-size: 56px;
+  font-size: 44px;
   font-weight: 800;
   color: #fff;
-  letter-spacing: -2px;
-  line-height: 1.08;
+  letter-spacing: -1.5px;
+  line-height: 1.12;
 }
 
 .hw-title-accent {
@@ -330,6 +330,8 @@ a {
   padding: 22px;
   transition: 0.2s ease;
   border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
 }
 
 .module-card:hover {
@@ -340,7 +342,9 @@ a {
 .module-link {
   color: inherit;
   text-decoration: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .module-top {
@@ -380,13 +384,35 @@ a {
   color: #64748b;
   font-size: 14px;
   line-height: 1.8;
-  min-height: 76px;
+  flex: 1;
 }
 
 .module-meta {
   margin-top: 14px;
   font-size: 13px;
   color: #475569;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.module-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.module-arrow {
+  font-size: 16px;
+  color: #94a3b8;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.module-card:hover .module-arrow {
+  transform: translateX(3px);
+  color: #6366f1;
 }
 
 /* 打印机 */
@@ -4101,32 +4127,49 @@ button {
 /* ===== 会议室页面 ===== */
 .meeting-tabs {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  padding: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
 }
 
 .meeting-tab {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 9px 18px;
-  border-radius: 999px;
-  border: 1px solid #e2e8f0;
-  background: #fff;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: transparent;
   font-size: 14px;
-  color: #475569;
+  font-weight: 500;
+  color: #64748b;
   cursor: pointer;
-  transition: 0.15s ease;
+  transition: 0.18s ease;
   font-family: inherit;
+  flex: 1;
+  justify-content: center;
+  min-width: 100px;
 }
 
-.meeting-tab:hover { background: #f8fafc; }
+.meeting-tab-icon { font-size: 18px; }
+.meeting-tab-label { white-space: nowrap; }
+
+.meeting-tab:hover {
+  background: #fff;
+  color: #0f172a;
+  border-color: #e2e8f0;
+}
 
 .meeting-tab.active {
-  background: #0f172a;
-  color: #fff;
-  border-color: #0f172a;
+  background: #fff;
+  color: #0f172a;
+  border-color: #e2e8f0;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.08);
 }
 
 .card-desc {
@@ -4457,3 +4500,268 @@ kbd {
   .footer-inner { flex-direction: column; gap: 32px; }
   .footer-links { gap: 28px; }
 }
+
+/* ===== 详情页 Header 视觉层次 ===== */
+.detail-header {
+  margin-bottom: 28px;
+  padding: 24px 28px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  border-left: 4px solid #6366f1;
+  box-shadow: 0 2px 12px rgba(15,23,42,0.04);
+}
+
+.detail-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.detail-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 各页面 header 左边框颜色 */
+.page-printer .detail-header  { border-left-color: #3b82f6; }
+.page-network .detail-header  { border-left-color: #0d9488; }
+.page-overseas .detail-header { border-left-color: #7c3aed; }
+.page-meeting .detail-header  { border-left-color: #f59e0b; }
+.page-scan .detail-header     { border-left-color: #10b981; }
+.page-ticket .detail-header   { border-left-color: #ef4444; }
+.page-software .detail-header { border-left-color: #0ea5e9; }
+
+/* ===== 账号申请 3列网格 ===== */
+.apply-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .apply-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== 状态看板汇总卡片渐变 ===== */
+.status-summary-card.ssc-green {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-color: #bbf7d0;
+}
+.status-summary-card.ssc-yellow {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-color: #fde68a;
+}
+.status-summary-card.ssc-red {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border-color: #fecaca;
+}
+.status-summary-card.ssc-gray {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-color: #e2e8f0;
+}
+
+/* ===== 常用链接宽网格 ===== */
+.quick-links-grid-wide {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 1100px) {
+  .quick-links-grid-wide { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .quick-links-grid-wide { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===== 扫描教程 tips 网格 ===== */
+.tips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+.tip-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+
+.tip-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.tip-desc {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .tips-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== 暗色模式补全 ===== */
+:root.dark .detail-header {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+:root.dark .detail-header h1 { color: #e2e8f0; }
+:root.dark .detail-header p  { color: #64748b; }
+
+:root.dark .meeting-tabs {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:root.dark .meeting-tab {
+  color: #64748b;
+}
+
+:root.dark .meeting-tab:hover,
+:root.dark .meeting-tab.active {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+:root.dark .interface-item,
+:root.dark .tip-item,
+:root.dark .speed-result-row {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:root.dark .interface-name,
+:root.dark .tip-title { color: #e2e8f0; }
+:root.dark .interface-desc,
+:root.dark .tip-desc  { color: #64748b; }
+
+:root.dark .meeting-func-item {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:root.dark .mfi-name { color: #e2e8f0; }
+:root.dark .mfi-desc { color: #64748b; }
+
+:root.dark .device-check-item {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:root.dark .dci-name { color: #e2e8f0; }
+:root.dark .dci-desc { color: #64748b; }
+
+:root.dark .key-item span { color: #94a3b8; }
+
+:root.dark .meeting-tip-banner {
+  background: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+:root.dark .sw-tip {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:root.dark .sw-cat-tag {
+  background: #334155;
+  color: #94a3b8;
+}
+
+:root.dark .btn-refresh {
+  background: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+:root.dark .status-summary-card.ssc-green  { background: linear-gradient(135deg, #052e16 0%, #064e3b 100%); border-color: #065f46; }
+:root.dark .status-summary-card.ssc-yellow { background: linear-gradient(135deg, #1c1400 0%, #2d1f00 100%); border-color: #451a03; }
+:root.dark .status-summary-card.ssc-red    { background: linear-gradient(135deg, #1c0000 0%, #2d0000 100%); border-color: #450a0a; }
+:root.dark .status-summary-card.ssc-gray   { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-color: #334155; }
+
+:root.dark .ql-label { color: #e2e8f0; }
+
+:root.dark .apply-item {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:root.dark .module-meta {
+  border-top-color: #334155;
+  color: #475569;
+}
+
+:root.dark .faq-link-card {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:root.dark .faq-link-title { color: #e2e8f0; }
+:root.dark .faq-link-desc  { color: #64748b; }
+
+:root.dark .share-path-row {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+:root.dark .share-path { color: #e2e8f0; }
+
+:root.dark .step-item {
+  background: #0f172a;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+:root.dark .step-item strong { color: #e2e8f0; }
+
+:root.dark .wifi-cred-block {
+  background: #0f1f3d;
+  border-color: #1e3a5f;
+}
+
+:root.dark .wifi-pw-row,
+:root.dark .wifi-cred-item {
+  background: #0f172a;
+  border-color: #1e3a5f;
+}
+
+:root.dark .wifi-pw-val { color: #e2e8f0; }
+:root.dark .wifi-cred-name { color: #e2e8f0; }
+
+:root.dark .scan-entry-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+:root.dark .scan-entry-title { color: #e2e8f0; }
+:root.dark .scan-entry-desc  { color: #64748b; }
+
+:root.dark .ticket-stat-num { color: #e2e8f0; }
+:root.dark .sla-label { color: #e2e8f0; }
+
+:root.dark .breadcrumb { color: #475569; }
+:root.dark .breadcrumb a { color: #6366f1; }
+
+:root.dark .module-footer {
+  border-top-color: #334155;
+}
+
+:root.dark .module-arrow { color: #475569; }
+:root.dark .module-card:hover .module-arrow { color: #818cf8; }

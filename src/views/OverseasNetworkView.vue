@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container page-overseas">
     <div class="breadcrumb">
       <RouterLink to="/">首页</RouterLink>
       <span>/</span>
@@ -111,7 +111,7 @@ const overseasSteps: StepItem[] = [
   },
   {
     title: '不使用时点“退出”关闭软件',
-    text: '',
+    text: '使用完毕后，右键任务栏托盘中的 v2rayN 图标，选择"退出"关闭软件，避免长期占用系统代理。',
     images: ['/images/overseas/step-4.png'],
   },
 ]

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container page-network">
     <div class="breadcrumb">
       <RouterLink to="/">首页</RouterLink>
       <span>/</span>

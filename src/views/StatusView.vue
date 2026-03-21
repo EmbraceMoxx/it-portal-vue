@@ -19,19 +19,19 @@
 
     <!-- 汇总数字 -->
     <div class="status-summary-row">
-      <div class="status-summary-card">
+      <div class="status-summary-card ssc-green">
         <div class="ssc-num green">{{ onlineCount }}</div>
         <div class="ssc-label">正常运行</div>
       </div>
-      <div class="status-summary-card">
+      <div class="status-summary-card ssc-yellow">
         <div class="ssc-num yellow">{{ degradedCount }}</div>
         <div class="ssc-label">部分异常</div>
       </div>
-      <div class="status-summary-card">
+      <div class="status-summary-card ssc-red">
         <div class="ssc-num red">{{ offlineCount }}</div>
         <div class="ssc-label">离线</div>
       </div>
-      <div class="status-summary-card">
+      <div class="status-summary-card ssc-gray">
         <div class="ssc-num gray">{{ systemStatusList.length }}</div>
         <div class="ssc-label">监控项目</div>
       </div>

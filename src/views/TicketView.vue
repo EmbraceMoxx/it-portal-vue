@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container page-ticket">
     <div class="breadcrumb">
       <RouterLink to="/">首页</RouterLink>
       <span>/</span>
@@ -9,7 +9,7 @@
     <div class="ticket-layout">
       <!-- 左侧表单 -->
       <div>
-        <div class="detail-header" style="margin-bottom: 0;">
+    <div class="detail-header" style="margin-bottom: 24px;">
           <div>
             <h1>提交 IT 工单</h1>
             <p>描述你遇到的问题，IT 会尽快跟进处理。</p>

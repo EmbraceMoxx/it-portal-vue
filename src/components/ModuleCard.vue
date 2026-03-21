@@ -13,7 +13,10 @@
 
     <h3>{{ item.title }}</h3>
     <p>{{ item.desc }}</p>
-    <div class="module-meta">{{ item.meta }}</div>
+    <div class="module-footer">
+      <div class="module-meta">{{ item.meta }}</div>
+      <span v-if="!item.comingSoon" class="module-arrow">→</span>
+    </div>
   </component>
 </template>
 
