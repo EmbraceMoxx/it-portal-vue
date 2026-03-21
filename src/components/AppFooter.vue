@@ -22,17 +22,13 @@
         <div class="footer-col">
           <div class="footer-col-title">工具</div>
           <RouterLink to="/software">💽 软件下载</RouterLink>
-          <RouterLink to="/status">📊 系统状态</RouterLink>
-          <RouterLink to="/ticket">📋 提交工单</RouterLink>
-          <RouterLink to="/device-request">📦 设备申请</RouterLink>
-          <RouterLink to="/network-map">🗺️ 网络拓扑</RouterLink>
+          <RouterLink to="/ticket">� 提交工单</RouterLink>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">资源</div>
           <RouterLink to="/kb">📚 IT 知识库</RouterLink>
           <RouterLink to="/onboarding">🎉 入职引导</RouterLink>
           <RouterLink to="/announcements">📢 IT 公告</RouterLink>
-          <RouterLink to="/project">📌 项目看板</RouterLink>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">IT 支持</div>

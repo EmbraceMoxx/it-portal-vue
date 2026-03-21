@@ -8,7 +8,6 @@
   <!-- 悬浮按钮组 -->
   <div class="float-group">
     <AiChat />
-    <FloatContact />
   </div>
 
   <!-- Toast -->
@@ -32,7 +31,6 @@
 import { ref, onMounted } from 'vue'
 import { toastState } from './composables/useClipboard'
 import { useTheme } from './composables/useTheme'
-import FloatContact from './components/FloatContact.vue'
 import AiChat from './components/AiChat.vue'
 import AppFooter from './components/AppFooter.vue'
 import AppHeader from './components/layout/AppHeader.vue'

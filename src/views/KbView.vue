@@ -103,36 +103,104 @@
       </div>
     </div>
 
-    <!-- 文章详情弹窗 -->
-    <transition name="drawer-fade">
-      <div v-if="selectedArticle" class="kb-drawer-overlay" @click.self="selectedArticle = null">
-        <div class="kb-drawer">
-          <div class="kb-drawer-head">
-            <div class="kb-drawer-meta">
+    <!-- 文章详情模态（大窗口，左右图文布局） -->
+    <transition name="kb-modal-fade">
+      <div v-if="selectedArticle" class="kb-modal-overlay" @click.self="selectedArticle = null">
+        <div class="kb-modal">
+
+          <!-- 左侧目录 -->
+          <aside class="kb-modal-sidebar">
+            <div class="kb-modal-sidebar-head">
               <span class="kb-drawer-cat">{{ selectedArticle.category }}</span>
-              <span class="kb-drawer-date">更新于 {{ selectedArticle.updatedAt }}</span>
             </div>
-            <button class="kb-drawer-close" @click="selectedArticle = null">✕</button>
-          </div>
-          <div class="kb-drawer-body">
-            <div class="kb-drawer-icon">{{ selectedArticle.icon }}</div>
-            <h2 class="kb-drawer-title">{{ selectedArticle.title }}</h2>
-            <p class="kb-drawer-desc">{{ selectedArticle.desc }}</p>
-            <div class="kb-drawer-tags">
+            <div class="kb-modal-sidebar-title">
+              {{ selectedArticle.icon }} {{ selectedArticle.title }}
+            </div>
+            <nav class="kb-modal-toc">
+              <button
+                v-for="(step, i) in activeSteps"
+                :key="i"
+                class="kb-toc-item"
+                :class="{ active: tocActive === i }"
+                @click="scrollToStep(i)"
+              >
+                <span class="kb-toc-num">{{ i + 1 }}</span>
+                <span class="kb-toc-label">{{ step.title }}</span>
+              </button>
+            </nav>
+            <div class="kb-modal-sidebar-footer">
+              <div class="kb-drawer-date">更新于 {{ selectedArticle.updatedAt }}</div>
+              <div v-if="selectedArticle.views" class="kb-drawer-date">{{ selectedArticle.views }} 次查看</div>
+            </div>
+          </aside>
+
+          <!-- 右侧内容 -->
+          <div class="kb-modal-content" ref="contentRef">
+            <!-- 顶部栏 -->
+            <div class="kb-modal-head">
+              <div>
+                <h2 class="kb-modal-title">{{ selectedArticle.title }}</h2>
+                <p class="kb-modal-subtitle">{{ selectedArticle.desc }}</p>
+              </div>
+              <button class="kb-drawer-close" @click="selectedArticle = null">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- 标签 -->
+            <div class="kb-modal-tags">
               <span v-for="tag in selectedArticle.tags" :key="tag" class="kb-article-tag">{{ tag }}</span>
             </div>
-            <div class="kb-drawer-steps">
-              <div class="kb-drawer-steps-label">操作步骤</div>
-              <div v-for="(step, i) in selectedArticle.content" :key="i" class="kb-drawer-step">
-                <span class="kb-drawer-step-num">{{ i + 1 }}</span>
-                <span class="kb-drawer-step-text">{{ step }}</span>
+
+            <!-- 富文本（接入语雀后使用） -->
+            <div v-if="selectedArticle.body" class="kb-modal-richtext" v-html="selectedArticle.body"></div>
+
+            <!-- 图文步骤 -->
+            <div v-else class="kb-modal-steps">
+              <div
+                v-for="(step, i) in activeSteps"
+                :key="i"
+                class="kb-step-block"
+                :ref="(el) => { if (el) stepRefs[i] = el as HTMLElement }"
+              >
+                <div class="kb-step-header">
+                  <span class="kb-step-num">{{ i + 1 }}</span>
+                  <h3 class="kb-step-title">{{ step.title }}</h3>
+                </div>
+                <div class="kb-step-body">
+                  <p class="kb-step-text" v-html="formatStepBody(step.body)"></p>
+                  <img
+                    v-if="step.image"
+                    :src="step.image"
+                    :alt="step.title"
+                    class="kb-step-image"
+                    loading="lazy"
+                  />
+                  <div v-if="step.tip" class="kb-step-tip" :class="`kb-tip-${step.tipType ?? 'info'}`">
+                    <span class="kb-tip-icon">{{ tipIcon(step.tipType) }}</span>
+                    <span>{{ step.tip }}</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="kb-drawer-footer">
-              <span>还有问题？</span>
+
+            <!-- 底部 -->
+            <div class="kb-modal-footer">
+              <span class="kb-modal-footer-text">还有问题？</span>
               <RouterLink to="/ticket" class="kb-drawer-ticket-link" @click="selectedArticle = null">提交工单 →</RouterLink>
+              <a
+                v-if="selectedArticle.sourceUrl"
+                :href="selectedArticle.sourceUrl"
+                target="_blank"
+                rel="noopener"
+                class="kb-drawer-ticket-link"
+                style="margin-left: auto;"
+              >在语雀中查看 ↗</a>
             </div>
           </div>
+
         </div>
       </div>
     </transition>
@@ -140,13 +208,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { kbArticles, kbCategories, type KbArticle } from '../data/kb'
+import { ref, computed, watch } from 'vue'
+import { kbArticles, kbCategories, type KbArticle, type KbStep } from '../data/kb'
 
 const searchQ = ref('')
 const activeCategory = ref('全部')
 const activePage = ref(1)
 const selectedArticle = ref<KbArticle | null>(null)
+const tocActive = ref(0)
+const stepRefs = ref<HTMLElement[]>([])
+const contentRef = ref<HTMLElement | null>(null)
 const PAGE_SIZE = 8
 
 const hotArticles = computed(() =>
@@ -175,6 +246,39 @@ const pagedArticles = computed(() => {
   const start = (activePage.value - 1) * PAGE_SIZE
   return filteredArticles.value.slice(start, start + PAGE_SIZE)
 })
+
+/** 当前文章步骤（优先 steps，降级 content 转换） */
+const activeSteps = computed<KbStep[]>(() => {
+  if (!selectedArticle.value) return []
+  if (selectedArticle.value.steps?.length) return selectedArticle.value.steps
+  return selectedArticle.value.content.map(c => ({ title: c.slice(0, 24), body: c }))
+})
+
+watch(selectedArticle, () => {
+  tocActive.value = 0
+  stepRefs.value = []
+})
+
+function scrollToStep(i: number) {
+  tocActive.value = i
+  const el = stepRefs.value[i]
+  if (el && contentRef.value) {
+    const top = el.offsetTop - 20
+    contentRef.value.scrollTo({ top, behavior: 'smooth' })
+  }
+}
+
+function formatStepBody(text: string) {
+  return text
+    .replace(/\n/g, '<br>')
+    .replace(/`([^`]+)`/g, '<code class="kb-inline-code">$1</code>')
+}
+
+function tipIcon(type?: string) {
+  if (type === 'warning') return '⚠️'
+  if (type === 'success') return '✅'
+  return 'ℹ️'
+}
 
 function highlight(text: string) {
   if (!searchQ.value.trim()) return text

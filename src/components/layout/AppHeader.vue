@@ -96,17 +96,14 @@ const navItems = [
   { to: '/printer',  icon: '🖨️', label: '打印机' },
   { to: '/network',  icon: '🌐', label: '网络' },
   { to: '/software', icon: '💽', label: '软件' },
-  { to: '/status',   icon: '📊', label: '状态' },
-  { to: '/project',  icon: '📌', label: '项目' },
+  { to: '/kb',       icon: '📚', label: '知识库' },
 ]
 
 const allNavItems = [
   ...navItems,
   { to: '/onboarding',    icon: '🎉', label: '入职引导' },
   { to: '/kb',            icon: '📚', label: '知识库' },
-  { to: '/device-request',icon: '📦', label: '设备申请' },
   { to: '/announcements', icon: '📢', label: '公告' },
-  { to: '/network-map',   icon: '🗺️', label: '网络拓扑' },
   { to: '/meeting',       icon: '📽️', label: '会议室' },
   { to: '/scan',          icon: '📠', label: '扫描' },
   { to: '/ticket',        icon: '📋', label: '工单' },

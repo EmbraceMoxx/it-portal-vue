@@ -1,3 +1,14 @@
+/** 图文步骤，支持文字 + 截图 + 提示 */
+export interface KbStep {
+  title: string
+  body: string
+  /** 相对于 /public 的图片路径，可选 */
+  image?: string
+  /** 提示/警告文字 */
+  tip?: string
+  tipType?: 'info' | 'warning' | 'success'
+}
+
 export interface KbArticle {
   id: string
   title: string
@@ -5,7 +16,20 @@ export interface KbArticle {
   category: string
   icon: string
   tags: string[]
-  content: string[]  // 步骤/要点列表
+  /**
+   * 图文步骤列表（静态演示）。
+   * 接入语雀/数据库后优先使用 body 字段渲染富文本，steps 作为降级。
+   */
+  steps?: KbStep[]
+  /** 兼容旧格式纯文字步骤 */
+  content: string[]
+  /**
+   * 富文本正文 HTML（语雀 body_html 或数据库字段直接赋值）。
+   * 有值时优先渲染，忽略 steps/content。
+   */
+  body?: string
+  /** 语雀原文链接，有值时底部显示"在语雀中查看" */
+  sourceUrl?: string
   updatedAt: string
   views?: number
 }
@@ -20,8 +44,33 @@ export const kbArticles: KbArticle[] = [
     category: '网络',
     icon: '📶',
     tags: ['Wi-Fi', '无线网络', '网络接入'],
+    steps: [
+      {
+        title: '打开 Wi-Fi 设置',
+        body: '点击任务栏右下角的网络图标，或进入「设置 → 网络和 Internet → WLAN」，确保 Wi-Fi 已开启。',
+        image: '/images/network/wifi-step-1.png',
+      },
+      {
+        title: '选择对应楼层的 SSID',
+        body: '在可用网络列表中找到对应楼层的 Wi-Fi 名称并点击连接：\n• 1/2号楼一楼：seaways-5G-1F\n• 1/2号楼二楼：seaways-5G\n• 1/2号楼三楼：seaways-5G-3F\n• 3号楼：seaways-5G',
+        image: '/images/network/wifi-step-2.png',
+      },
+      {
+        title: '输入 Wi-Fi 密码',
+        body: '在密码框中输入统一密码，然后点击「连接」。',
+        image: '/images/network/wifi-step-3.png',
+        tip: 'Wi-Fi 密码：SWS88888888（全大写，共10位）',
+        tipType: 'success',
+      },
+      {
+        title: '确认连接成功',
+        body: '连接成功后，任务栏网络图标会显示已连接状态，此时可正常访问内网和互联网资源。',
+        tip: '如果连接后无法上网，尝试「断开 → 重新连接」，或联系 IT 检查账号状态。',
+        tipType: 'info',
+      },
+    ],
     content: [
-      '打开系统 Wi-Fi 设置，搜索 SSID：SWS-Office',
+      '打开系统 Wi-Fi 设置，搜索对应楼层 SSID',
       '输入密码：SWS88888888',
       '连接成功后可访问内网资源',
       '如连接失败，检查是否在覆盖范围内，或联系 IT 重置账号',
@@ -36,6 +85,26 @@ export const kbArticles: KbArticle[] = [
     category: '网络',
     icon: '🔌',
     tags: ['有线网络', 'IP配置', '内网'],
+    steps: [
+      {
+        title: '连接网线',
+        body: '将网线一端插入电脑网口（RJ45 接口），另一端插入工位旁的墙面网口或交换机端口。',
+        image: '/images/network/wired-step-1.png',
+      },
+      {
+        title: '等待自动获取 IP',
+        body: '系统默认开启 DHCP，插上网线后约 5-10 秒会自动获取 IP 地址（192.168.120.x 网段），无需手动配置。',
+        image: '/images/network/wired-step-2.png',
+        tip: '可在「设置 → 网络 → 以太网 → 属性」中确认 IP 地址已分配。',
+        tipType: 'info',
+      },
+      {
+        title: '验证网络连通性',
+        body: '打开浏览器访问任意网页，或在命令提示符中执行 ping 192.168.120.1 确认内网连通。',
+        tip: '如需固定 IP（服务器、打印机等），请联系 IT 分配并手动填写。',
+        tipType: 'warning',
+      },
+    ],
     content: [
       '将网线插入电脑网口和墙面网口',
       '系统默认 DHCP 自动获取 IP，无需手动配置',
@@ -52,6 +121,36 @@ export const kbArticles: KbArticle[] = [
     category: '网络',
     icon: '🚀',
     tags: ['海外网络', 'VPN', '代理'],
+    steps: [
+      {
+        title: '获取客户端安装包',
+        body: '联系 IT（企业微信：黎灿 / 曹杰珲）获取代理客户端安装包，或从内网共享盘下载。',
+        tip: '安装包不对外公开，请勿转发给非公司人员。',
+        tipType: 'warning',
+      },
+      {
+        title: '安装并导入配置',
+        body: '运行安装包完成安装后，打开客户端，点击「导入配置」，选择 IT 提供的配置文件（.json 或 .yaml 格式）。',
+        image: '/images/overseas/step-1.png',
+      },
+      {
+        title: '选择节点并连接',
+        body: '在节点列表中选择延迟较低的节点，点击「连接」，等待状态变为「已连接」。',
+        image: '/images/overseas/step-2.png',
+      },
+      {
+        title: '开启系统代理',
+        body: '确认客户端中「系统代理」开关已打开，此时浏览器可直接访问海外资源，无需额外配置。',
+        image: '/images/overseas/step-3.png',
+        tip: '不使用时请关闭系统代理，避免影响内网访问速度。',
+        tipType: 'info',
+      },
+      {
+        title: '验证连接',
+        body: '打开浏览器访问 google.com 或 youtube.com，能正常加载即表示配置成功。',
+        image: '/images/overseas/step-4.png',
+      },
+    ],
     content: [
       '从软件下载中心获取客户端安装包',
       '安装完成后导入配置文件（联系 IT 获取）',
@@ -68,10 +167,40 @@ export const kbArticles: KbArticle[] = [
     category: '打印机',
     icon: '🖨️',
     tags: ['打印机', '驱动安装', '共享盘'],
+    steps: [
+      {
+        title: '复制共享盘路径',
+        body: '复制以下路径备用，稍后需要粘贴到文件管理器地址栏：\n\\\\192.168.120.252\\itsupport\\打印机驱动\\安装说明',
+        tip: '路径以双反斜杠开头，注意不要漏掉。',
+        tipType: 'warning',
+      },
+      {
+        title: '打开文件管理器并连接共享盘',
+        body: '按 Win+E 打开文件管理器，点击顶部地址栏，粘贴路径后按回车。系统会弹出凭据输入框。',
+      },
+      {
+        title: '输入共享盘凭据',
+        body: '在弹出的登录框中输入：\n• 用户名：it_ro\n• 密码：Sws888888\n\n勾选「记住凭据」可避免下次重复输入。',
+        tip: '密码区分大小写，注意首字母大写。',
+        tipType: 'warning',
+      },
+      {
+        title: '找到对应楼层的安装文件',
+        body: '进入共享盘后，根据你所在楼层找到对应的打印机文件夹，双击运行 .bat 安装脚本。',
+        tip: '不确定楼层对应哪台打印机，可查看文件夹名称或联系 IT 确认。',
+        tipType: 'info',
+      },
+      {
+        title: '等待安装完成',
+        body: '脚本会自动安装驱动并添加打印机，整个过程约 1-2 分钟。完成后在「设备和打印机」中可以看到新添加的打印机。',
+        tip: '安装完成后建议打印一张测试页确认正常。',
+        tipType: 'success',
+      },
+    ],
     content: [
       '复制共享盘路径：\\\\192.168.120.252\\IT共享',
       '在文件管理器地址栏粘贴路径并回车',
-      '输入凭据：用户名 sws，密码 Sws888888',
+      '输入凭据：用户名 it_ro，密码 Sws888888',
       '进入 Printer 文件夹，双击对应型号的 .bat 文件',
       '等待安装完成，在打印机列表中确认',
     ],

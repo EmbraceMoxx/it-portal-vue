@@ -22,10 +22,6 @@
             <span class="hw-nav-icon">🚀</span>
             <span class="hw-nav-label">海外网络</span>
           </RouterLink>
-          <RouterLink class="hw-nav-item" to="/status">
-            <span class="hw-nav-icon">📊</span>
-            <span class="hw-nav-label">系统状态</span>
-          </RouterLink>
           <RouterLink class="hw-nav-item" to="/ticket">
             <span class="hw-nav-icon">📋</span>
             <span class="hw-nav-label">提交工单</span>
@@ -45,24 +41,14 @@
         <div class="tsb-left">
           <span class="tsb-date">{{ todayStr }}</span>
           <span class="tsb-clock">{{ clockStr }}</span>
-          <span class="tsb-divider"></span>
-          <span class="tsb-status-dot" :class="overallStatusClass"></span>
-          <span class="tsb-status-text">{{ overallStatusText }}</span>
+          <div class="tsb-divider"></div>
+          <span class="tsb-status-dot online"></span>
+          <span class="tsb-status-text">IT 服务正常运行</span>
         </div>
         <div class="tsb-right">
-          <RouterLink to="/status" class="tsb-stat">
-            <span class="tsb-stat-num green">{{ onlineCount }}</span>
-            <span class="tsb-stat-label">在线设备</span>
-          </RouterLink>
-          <div class="tsb-stat-sep"></div>
           <RouterLink to="/ticket" class="tsb-stat">
             <span class="tsb-stat-num blue">1</span>
             <span class="tsb-stat-label">处理中工单</span>
-          </RouterLink>
-          <div class="tsb-stat-sep"></div>
-          <RouterLink to="/status" class="tsb-stat">
-            <span class="tsb-stat-num" :class="degradedCount > 0 ? 'yellow' : 'green'">{{ degradedCount }}</span>
-            <span class="tsb-stat-label">异常设备</span>
           </RouterLink>
           <div class="tsb-stat-sep"></div>
           <RouterLink to="/announcements" class="tsb-stat">
@@ -100,27 +86,26 @@
           </div>
           <span class="hfc-arrow">›</span>
         </RouterLink>
-        <RouterLink to="/device-request" class="home-feature-card hfc-amber">
-          <span class="hfc-icon">📦</span>
+        <RouterLink to="/announcements" class="home-feature-card hfc-amber">
+          <span class="hfc-icon">📢</span>
           <div class="hfc-body">
-            <div class="hfc-title">设备申请</div>
-            <div class="hfc-desc">申请电脑、显示器等硬件设备</div>
+            <div class="hfc-title">IT 公告</div>
+            <div class="hfc-desc">维护通知、设备更新、安全提醒</div>
           </div>
           <span class="hfc-arrow">›</span>
         </RouterLink>
-        <RouterLink to="/network-map" class="home-feature-card hfc-teal">
-          <span class="hfc-icon">🗺️</span>
+        <RouterLink to="/announcements" class="home-feature-card hfc-teal">
+          <span class="hfc-icon">📢</span>
           <div class="hfc-body">
-            <div class="hfc-title">网络拓扑图</div>
-            <div class="hfc-desc">可视化内网结构，实时节点状态</div>
+            <div class="hfc-title">IT 公告</div>
+            <div class="hfc-desc">维护通知、设备更新、安全提醒</div>
           </div>
           <span class="hfc-arrow">›</span>
         </RouterLink>
       </div>
 
-      <!-- 最新公告 + 项目进展 -->
+      <!-- 最新公告 -->
       <div class="home-two-grid" style="margin-top: 0;">
-        <!-- 最新公告 -->
         <section class="section-card">
           <div class="section-head">
             <div>
@@ -138,26 +123,21 @@
           </div>
         </section>
 
-        <!-- 项目进展快照 -->
+        <!-- 知识库热门 -->
         <section class="section-card">
           <div class="section-head">
             <div>
-              <h2>项目进展</h2>
-              <div class="section-subtitle">本周 IT 项目状态</div>
+              <h2>热门文档</h2>
+              <div class="section-subtitle">最常查阅的知识库文章</div>
             </div>
-            <RouterLink to="/project" class="btn-link">看板 →</RouterLink>
+            <RouterLink to="/kb" class="btn-link">知识库 →</RouterLink>
           </div>
           <div class="home-proj-list">
-            <div v-for="proj in projects.slice(0,4)" :key="proj.id" class="home-proj-item">
-              <div class="home-proj-left">
-                <span class="home-proj-dot" :class="`proj-dot-${proj.status}`"></span>
-                <span class="home-proj-name">{{ proj.name }}</span>
-              </div>
-              <div class="home-proj-right">
-                <div class="home-proj-bar">
-                  <div class="home-proj-fill" :style="{ width: proj.progress + '%' }"></div>
-                </div>
-                <span class="home-proj-pct">{{ proj.progress }}%</span>
+            <div v-for="art in hotKbArticles" :key="art.id" class="yuque-item" style="cursor:pointer;" @click="$router.push('/kb')">
+              <span class="yuque-icon">{{ art.icon }}</span>
+              <div>
+                <div class="yuque-label">{{ art.title }}</div>
+                <div class="yuque-desc">{{ art.views }} 次查看 · {{ art.category }}</div>
               </div>
             </div>
           </div>
@@ -231,6 +211,59 @@
         </div>
       </section>
 
+      <!-- IT 支持联系 -->
+      <section class="section-card it-support-card">
+        <div class="section-head" style="margin-bottom: 20px;">
+          <div>
+            <h2>联系 IT 支持</h2>
+            <div class="section-subtitle">通过企业微信联系，工作时间内快速响应</div>
+          </div>
+          <RouterLink to="/ticket" class="btn-primary-sm">📋 提交工单</RouterLink>
+        </div>
+        <div class="it-support-grid">
+          <div class="it-support-group it-bg">
+            <div class="it-support-scope">💻 电脑 · 网络 · 打印机</div>
+            <div class="it-support-people">
+              <div class="it-support-person">
+                <div class="it-av it">黎</div>
+                <div>
+                  <div class="it-name">黎灿</div>
+                  <div class="it-role">IT 运维工程师</div>
+                </div>
+              </div>
+              <div class="it-support-person">
+                <div class="it-av it">曹</div>
+                <div>
+                  <div class="it-name">曹杰珲</div>
+                  <div class="it-role">IT 运维工程师</div>
+                </div>
+              </div>
+            </div>
+            <div class="it-support-tip">企业微信搜索姓名发起会话</div>
+          </div>
+          <div class="it-support-group erp-bg">
+            <div class="it-support-scope">📦 金蝶 ERP 系统</div>
+            <div class="it-support-people">
+              <div class="it-support-person">
+                <div class="it-av erp">王</div>
+                <div>
+                  <div class="it-name">王文林</div>
+                  <div class="it-role">ERP 系统管理员</div>
+                </div>
+              </div>
+            </div>
+            <div class="it-support-tip">账号开通、权限申请、系统问题</div>
+          </div>
+          <div class="it-support-group ticket-bg">
+            <div class="it-support-scope">📋 提交工单</div>
+            <div class="it-support-ticket-desc">
+              问题记录在案，IT 跟进处理，适合非紧急问题或需要留存记录的情况。
+            </div>
+            <RouterLink to="/ticket" class="it-support-ticket-btn">去提交工单 →</RouterLink>
+          </div>
+        </div>
+      </section>
+
       <!-- IT 知识库 -->
       <section class="section-card">
         <div class="section-head">
@@ -286,29 +319,17 @@ import { quickLinks } from '../data/quick-links'
 import { faqItems } from '../data/faq'
 import { onboardingItems } from '../data/onboarding'
 import { policyItems } from '../data/it-policy'
-import { systemStatusList } from '../data/system-status'
 import { announcements } from '../data/announcements'
-import { projects } from '../data/projects'
 import { kbArticles } from '../data/kb'
+
+const hotKbArticles = computed(() =>
+  [...kbArticles].sort((a, b) => (b.views ?? 0) - (a.views ?? 0)).slice(0, 4)
+)
 
 const displayModules = computed(() =>
   modules.filter((m) => ['printer', 'network', 'overseas-network', 'meeting', 'erp', 'software'].includes(m.key))
 )
 
-const onlineCount = computed(() => systemStatusList.filter(s => s.status === 'online').length)
-const degradedCount = computed(() => systemStatusList.filter(s => s.status === 'degraded').length)
-
-const overallStatusClass = computed(() => {
-  if (systemStatusList.some(s => s.status === 'offline')) return 'offline'
-  if (degradedCount.value > 0) return 'degraded'
-  return 'online'
-})
-
-const overallStatusText = computed(() => {
-  if (systemStatusList.some(s => s.status === 'offline')) return '存在服务中断'
-  if (degradedCount.value > 0) return `${degradedCount.value} 个设备异常`
-  return '所有系统正常运行'
-})
 
 const todayStr = computed(() => {
   const d = new Date()
