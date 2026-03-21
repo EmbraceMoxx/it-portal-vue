@@ -4547,21 +4547,33 @@ kbd {
 }
 
 /* ===== 首页主体布局：主内容 + IT 支持侧边栏 ===== */
+.home-with-sidebar {
+  position: relative;
+}
+
 .home-layout {
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 24px;
-  align-items: start;
+  position: relative;
 }
 
 .home-main {
   min-width: 0;
 }
 
-/* 右侧 IT 支持侧边栏 */
+/* 右侧 IT 支持侧边栏：absolute 在 home-with-sidebar 内，内部 sticky 触顶固定 */
 .home-support-sidebar {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: -268px;
+  width: 240px;
+  height: 100%;
+  pointer-events: none; /* 不遮挡下层点击 */
+}
+
+.home-support-sidebar .hss-inner {
   position: sticky;
-  top: 80px; /* NavBar 高度 */
+  top: 88px;
+  pointer-events: all;
 }
 
 .hss-inner {
@@ -4651,15 +4663,17 @@ kbd {
   text-align: center;
 }
 
-/* 窄屏悬浮按钮（默认隐藏，仅窄屏显示） */
+/* 侧边栏只在视口足够宽时显示（container 1240px + 两侧各 ~150px） */
+@media (min-width: 1540px) {
+  .home-support-sidebar {
+    display: block;
+  }
+}
+/* 窄屏悬浮按钮（默认隐藏） */
 .hss-float { display: none; }
 
-/* 窄屏：侧边栏隐藏，悬浮按钮出现 */
-@media (max-width: 1100px) {
-  .home-layout {
-    grid-template-columns: 1fr;
-  }
-
+/* 侧边栏只在 container 有足够外部空间时显示（container 最大 1240px，加上侧边栏需要约 1540px） */
+@media (max-width: 1540px) {
   .home-support-sidebar {
     display: none;
   }
@@ -4667,7 +4681,7 @@ kbd {
   .hss-float {
     display: block;
     position: fixed;
-    bottom: 100px; /* 在 AI 助手上方 */
+    bottom: 100px;
     right: 24px;
     z-index: 300;
   }

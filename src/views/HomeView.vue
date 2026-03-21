@@ -57,11 +57,14 @@
         </div>
       </div>
 
-      <!-- 主体：左侧内容 + 右侧 IT 支持侧边栏 -->
-      <div class="home-layout">
+      <!-- 外层 wrapper，sidebar 绝对定位在此相对容器内 -->
+      <div class="home-with-sidebar">
 
-        <!-- 左侧主内容 -->
-        <div class="home-main">
+        <!-- 主体包裹（不占侧边栏宽度） -->
+        <div class="home-layout">
+
+          <!-- 左侧主内容 -->
+          <div class="home-main">
 
           <!-- 服务模块 -->
           <section class="module-grid">
@@ -245,8 +248,9 @@
           </section>
 
         </div><!-- /home-main -->
+        </div><!-- /home-layout -->
 
-        <!-- 右侧 IT 支持侧边栏（宽屏常驻，窄屏悬浮） -->
+        <!-- 右侧 IT 支持侧边栏（绝对定位在 home-with-sidebar 内，sticky 触顶固定） -->
         <aside class="home-support-sidebar">
           <div class="hss-inner">
             <div class="hss-title">联系 IT 支持</div>
@@ -328,9 +332,9 @@
             </svg>
             <span v-if="!floatOpen">IT 支持</span>
           </button>
-        </div>
+        </div><!-- /hss-float -->
 
-      </div><!-- /home-layout -->
+      </div><!-- /home-with-sidebar -->
     </div>
   </div>
 </template>
