@@ -3,6 +3,7 @@
     <div class="search-input-row">
       <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input
+        ref="inputRef"
         v-model="query"
         class="search-input"
         placeholder="搜索常见问题、功能入口…"
@@ -41,10 +42,14 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { faqItems } from '../data/faq'
 
+const props = defineProps<{ autofocus?: boolean }>()
+const emit = defineEmits(['close'])
+
 const router = useRouter()
 const query = ref('')
 const showResults = ref(false)
 const wrapRef = ref<HTMLElement | null>(null)
+const inputRef = ref<HTMLInputElement | null>(null)
 
 interface SearchEntry {
   id: string
@@ -91,6 +96,7 @@ function navigate(item: SearchEntry) {
   router.push(item.to)
   showResults.value = false
   query.value = ''
+  emit('close')
 }
 
 function goFirst() {
@@ -103,6 +109,11 @@ function onClickOutside(e: MouseEvent) {
   }
 }
 
-onMounted(() => document.addEventListener('mousedown', onClickOutside))
+onMounted(() => {
+  document.addEventListener('mousedown', onClickOutside)
+  if (props.autofocus) {
+    setTimeout(() => inputRef.value?.focus(), 50)
+  }
+})
 onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <!-- Hero 全宽 -->
     <div class="hero-wrap">
       <div class="hw-inner">
@@ -31,20 +30,21 @@
             <span class="hw-nav-icon">📋</span>
             <span class="hw-nav-label">提交工单</span>
           </RouterLink>
-          <div class="hw-nav-item hw-nav-disabled">
-            <span class="hw-nav-icon">📦</span>
-            <span class="hw-nav-label">金蝶 ERP</span>
-          </div>
+          <RouterLink class="hw-nav-item" to="/kb">
+            <span class="hw-nav-icon">📚</span>
+            <span class="hw-nav-label">知识库</span>
+          </RouterLink>
         </div>
       </div>
     </div>
 
     <div class="container">
 
-      <!-- 今日 IT 状态 -->
+      <!-- 今日 IT 状态条 -->
       <div class="today-status-bar">
         <div class="tsb-left">
           <span class="tsb-date">{{ todayStr }}</span>
+          <span class="tsb-clock">{{ clockStr }}</span>
           <span class="tsb-divider"></span>
           <span class="tsb-status-dot" :class="overallStatusClass"></span>
           <span class="tsb-status-text">{{ overallStatusText }}</span>
@@ -64,6 +64,11 @@
             <span class="tsb-stat-num" :class="degradedCount > 0 ? 'yellow' : 'green'">{{ degradedCount }}</span>
             <span class="tsb-stat-label">异常设备</span>
           </RouterLink>
+          <div class="tsb-stat-sep"></div>
+          <RouterLink to="/announcements" class="tsb-stat">
+            <span class="tsb-stat-num blue">{{ announcements.length }}</span>
+            <span class="tsb-stat-label">条公告</span>
+          </RouterLink>
         </div>
       </div>
 
@@ -76,6 +81,88 @@
       <section class="module-grid">
         <ModuleCard v-for="item in displayModules" :key="item.key" :item="item" />
       </section>
+
+      <!-- 新功能入口横排 -->
+      <div class="home-feature-row">
+        <RouterLink to="/onboarding" class="home-feature-card hfc-green">
+          <span class="hfc-icon">🎉</span>
+          <div class="hfc-body">
+            <div class="hfc-title">新员工入职引导</div>
+            <div class="hfc-desc">分步骤完成 IT 配置，进度自动保存</div>
+          </div>
+          <span class="hfc-arrow">›</span>
+        </RouterLink>
+        <RouterLink to="/kb" class="home-feature-card hfc-purple">
+          <span class="hfc-icon">📚</span>
+          <div class="hfc-body">
+            <div class="hfc-title">IT 知识库</div>
+            <div class="hfc-desc">{{ kbArticles.length }} 篇文档，常见问题自助解决</div>
+          </div>
+          <span class="hfc-arrow">›</span>
+        </RouterLink>
+        <RouterLink to="/device-request" class="home-feature-card hfc-amber">
+          <span class="hfc-icon">📦</span>
+          <div class="hfc-body">
+            <div class="hfc-title">设备申请</div>
+            <div class="hfc-desc">申请电脑、显示器等硬件设备</div>
+          </div>
+          <span class="hfc-arrow">›</span>
+        </RouterLink>
+        <RouterLink to="/network-map" class="home-feature-card hfc-teal">
+          <span class="hfc-icon">🗺️</span>
+          <div class="hfc-body">
+            <div class="hfc-title">网络拓扑图</div>
+            <div class="hfc-desc">可视化内网结构，实时节点状态</div>
+          </div>
+          <span class="hfc-arrow">›</span>
+        </RouterLink>
+      </div>
+
+      <!-- 最新公告 + 项目进展 -->
+      <div class="home-two-grid" style="margin-top: 0;">
+        <!-- 最新公告 -->
+        <section class="section-card">
+          <div class="section-head">
+            <div>
+              <h2>最新公告</h2>
+              <div class="section-subtitle">IT 通知与维护信息</div>
+            </div>
+            <RouterLink to="/announcements" class="btn-link">查看全部 →</RouterLink>
+          </div>
+          <div class="announce-list">
+            <div v-for="ann in announcements.slice(0,4)" :key="ann.id" class="announce-item">
+              <span class="announce-tag" :class="`announce-tag-${ann.tagColor}`">{{ ann.tag }}</span>
+              <span class="announce-title">{{ ann.title }}</span>
+              <span class="announce-date">{{ ann.date }}</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 项目进展快照 -->
+        <section class="section-card">
+          <div class="section-head">
+            <div>
+              <h2>项目进展</h2>
+              <div class="section-subtitle">本周 IT 项目状态</div>
+            </div>
+            <RouterLink to="/project" class="btn-link">看板 →</RouterLink>
+          </div>
+          <div class="home-proj-list">
+            <div v-for="proj in projects.slice(0,4)" :key="proj.id" class="home-proj-item">
+              <div class="home-proj-left">
+                <span class="home-proj-dot" :class="`proj-dot-${proj.status}`"></span>
+                <span class="home-proj-name">{{ proj.name }}</span>
+              </div>
+              <div class="home-proj-right">
+                <div class="home-proj-bar">
+                  <div class="home-proj-fill" :style="{ width: proj.progress + '%' }"></div>
+                </div>
+                <span class="home-proj-pct">{{ proj.progress }}%</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <!-- 入职清单 + 账号申请 -->
       <div class="home-two-grid">
@@ -92,6 +179,7 @@
               </div>
             </div>
           </div>
+          <RouterLink to="/onboarding" class="home-onboard-link">查看完整入职引导 →</RouterLink>
         </section>
         <section class="section-card">
           <h2 class="bottom-card-title">账号 &amp; 权限申请</h2>
@@ -148,28 +236,24 @@
         <div class="section-head">
           <div>
             <h2>IT 知识库</h2>
-            <div class="section-subtitle">语雀文档，详细操作说明与手册</div>
+            <div class="section-subtitle">{{ kbArticles.length }} 篇文档，详细操作说明</div>
           </div>
+          <RouterLink to="/kb" class="btn-link">查看全部 →</RouterLink>
         </div>
         <div class="yuque-grid">
-          <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
-            <span class="yuque-icon">🖨️</span><div><div class="yuque-label">打印机安装说明</div><div class="yuque-desc">驱动安装、共享盘连接步骤</div></div>
-          </a>
-          <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
-            <span class="yuque-icon">🌐</span><div><div class="yuque-label">网络接入说明</div><div class="yuque-desc">有线、无线、海外网络配置</div></div>
-          </a>
-          <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
-            <span class="yuque-icon">💿</span><div><div class="yuque-label">常用软件安装</div><div class="yuque-desc">办公软件、驱动下载地址</div></div>
-          </a>
-          <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
-            <span class="yuque-icon">📦</span><div><div class="yuque-label">金蝶 ERP 使用手册</div><div class="yuque-desc">登录、操作、常见问题</div></div>
-          </a>
-          <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
-            <span class="yuque-icon">🔑</span><div><div class="yuque-label">账号与权限申请</div><div class="yuque-desc">新员工入职、权限变更流程</div></div>
-          </a>
-          <a href="https://www.yuque.com/" target="_blank" rel="noopener" class="yuque-item">
-            <span class="yuque-icon">🛠️</span><div><div class="yuque-label">IT 故障排查手册</div><div class="yuque-desc">常见问题处理步骤汇总</div></div>
-          </a>
+          <div
+            v-for="art in kbArticles.slice(0,6)"
+            :key="art.id"
+            class="yuque-item"
+            style="cursor: pointer;"
+            @click="$router.push('/kb')"
+          >
+            <span class="yuque-icon">{{ art.icon }}</span>
+            <div>
+              <div class="yuque-label">{{ art.title }}</div>
+              <div class="yuque-desc">{{ art.desc }}</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -193,7 +277,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import ModuleCard from '../components/ModuleCard.vue'
 import SearchBar from '../components/SearchBar.vue'
 import DiagWizard from '../components/DiagWizard.vue'
@@ -203,6 +287,9 @@ import { faqItems } from '../data/faq'
 import { onboardingItems } from '../data/onboarding'
 import { policyItems } from '../data/it-policy'
 import { systemStatusList } from '../data/system-status'
+import { announcements } from '../data/announcements'
+import { projects } from '../data/projects'
+import { kbArticles } from '../data/kb'
 
 const displayModules = computed(() =>
   modules.filter((m) => ['printer', 'network', 'overseas-network', 'meeting', 'erp', 'software'].includes(m.key))
@@ -227,4 +314,23 @@ const todayStr = computed(() => {
   const d = new Date()
   return `${d.getFullYear()} 年 ${d.getMonth() + 1} 月 ${d.getDate()} 日`
 })
+
+// 实时时钟
+const clockStr = ref('')
+let clockTimer: ReturnType<typeof setInterval>
+
+function updateClock() {
+  const d = new Date()
+  const h = String(d.getHours()).padStart(2, '0')
+  const m = String(d.getMinutes()).padStart(2, '0')
+  const s = String(d.getSeconds()).padStart(2, '0')
+  clockStr.value = `${h}:${m}:${s}`
+}
+
+onMounted(() => {
+  updateClock()
+  clockTimer = setInterval(updateClock, 1000)
+})
+
+onUnmounted(() => clearInterval(clockTimer))
 </script>
