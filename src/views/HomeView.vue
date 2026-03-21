@@ -58,10 +58,58 @@
         </div>
       </div>
 
-      <!-- 快速故障诊断 -->
-      <div class="section-card" style="margin-bottom: 28px; padding: 0; overflow: hidden;">
-        <DiagWizard />
-      </div>
+      <!-- IT 支持联系 -->
+      <section class="section-card it-support-card">
+        <div class="section-head" style="margin-bottom: 20px;">
+          <div>
+            <h2>联系 IT 支持</h2>
+            <div class="section-subtitle">通过企业微信联系，工作时间内快速响应</div>
+          </div>
+          <RouterLink to="/ticket" class="btn-primary-sm">📋 提交工单</RouterLink>
+        </div>
+        <div class="it-support-grid">
+          <div class="it-support-group it-bg">
+            <div class="it-support-scope">💻 电脑 · 网络 · 打印机</div>
+            <div class="it-support-people">
+              <div class="it-support-person">
+                <div class="it-av it">黎</div>
+                <div>
+                  <div class="it-name">黎灿</div>
+                  <div class="it-role">IT 运维工程师</div>
+                </div>
+              </div>
+              <div class="it-support-person">
+                <div class="it-av it">曹</div>
+                <div>
+                  <div class="it-name">曹杰珲</div>
+                  <div class="it-role">IT 运维工程师</div>
+                </div>
+              </div>
+            </div>
+            <div class="it-support-tip">企业微信搜索姓名发起会话</div>
+          </div>
+          <div class="it-support-group erp-bg">
+            <div class="it-support-scope">📦 金蝶 ERP 系统</div>
+            <div class="it-support-people">
+              <div class="it-support-person">
+                <div class="it-av erp">王</div>
+                <div>
+                  <div class="it-name">王文林</div>
+                  <div class="it-role">ERP 系统管理员</div>
+                </div>
+              </div>
+            </div>
+            <div class="it-support-tip">账号开通、权限申请、系统问题</div>
+          </div>
+          <div class="it-support-group ticket-bg">
+            <div class="it-support-scope">📋 提交工单</div>
+            <div class="it-support-ticket-desc">
+              问题记录在案，IT 跟进处理，适合非紧急问题或需要留存记录的情况。
+            </div>
+            <RouterLink to="/ticket" class="it-support-ticket-btn">去提交工单 →</RouterLink>
+          </div>
+        </div>
+      </section>
 
       <!-- 服务模块 -->
       <section class="module-grid">
@@ -211,59 +259,6 @@
         </div>
       </section>
 
-      <!-- IT 支持联系 -->
-      <section class="section-card it-support-card">
-        <div class="section-head" style="margin-bottom: 20px;">
-          <div>
-            <h2>联系 IT 支持</h2>
-            <div class="section-subtitle">通过企业微信联系，工作时间内快速响应</div>
-          </div>
-          <RouterLink to="/ticket" class="btn-primary-sm">📋 提交工单</RouterLink>
-        </div>
-        <div class="it-support-grid">
-          <div class="it-support-group it-bg">
-            <div class="it-support-scope">💻 电脑 · 网络 · 打印机</div>
-            <div class="it-support-people">
-              <div class="it-support-person">
-                <div class="it-av it">黎</div>
-                <div>
-                  <div class="it-name">黎灿</div>
-                  <div class="it-role">IT 运维工程师</div>
-                </div>
-              </div>
-              <div class="it-support-person">
-                <div class="it-av it">曹</div>
-                <div>
-                  <div class="it-name">曹杰珲</div>
-                  <div class="it-role">IT 运维工程师</div>
-                </div>
-              </div>
-            </div>
-            <div class="it-support-tip">企业微信搜索姓名发起会话</div>
-          </div>
-          <div class="it-support-group erp-bg">
-            <div class="it-support-scope">📦 金蝶 ERP 系统</div>
-            <div class="it-support-people">
-              <div class="it-support-person">
-                <div class="it-av erp">王</div>
-                <div>
-                  <div class="it-name">王文林</div>
-                  <div class="it-role">ERP 系统管理员</div>
-                </div>
-              </div>
-            </div>
-            <div class="it-support-tip">账号开通、权限申请、系统问题</div>
-          </div>
-          <div class="it-support-group ticket-bg">
-            <div class="it-support-scope">📋 提交工单</div>
-            <div class="it-support-ticket-desc">
-              问题记录在案，IT 跟进处理，适合非紧急问题或需要留存记录的情况。
-            </div>
-            <RouterLink to="/ticket" class="it-support-ticket-btn">去提交工单 →</RouterLink>
-          </div>
-        </div>
-      </section>
-
       <!-- IT 知识库 -->
       <section class="section-card">
         <div class="section-head">
@@ -313,7 +308,6 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import ModuleCard from '../components/ModuleCard.vue'
 import SearchBar from '../components/SearchBar.vue'
-import DiagWizard from '../components/DiagWizard.vue'
 import { modules } from '../data/modules'
 import { quickLinks } from '../data/quick-links'
 import { faqItems } from '../data/faq'
